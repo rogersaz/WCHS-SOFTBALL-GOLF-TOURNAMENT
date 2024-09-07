@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useForm } from "react-hook-form";
 import { Link } from "@remix-run/react";
 import 'tailwindcss/tailwind.css';
+import { useOptionalUser } from "~/utils";
 
 const supabaseUrl = 'https://omhsepwfnkxmzjqvydun.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9taHNlcHdmbmt4bXpqcXZ5ZHVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2NDEzMzcsImV4cCI6MjAyNzIxNzMzN30.did1LkX1hVTxQs-nQLWxlSNSsL_WSJIV89HKcVPPfC4';
