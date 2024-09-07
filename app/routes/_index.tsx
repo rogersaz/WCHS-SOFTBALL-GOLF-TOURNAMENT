@@ -46,7 +46,12 @@ export default function Index() {
                     >
                       Sign up
                     </Link>
-                    {/* Removed the Log In button */}
+                    <Link
+                      to="/about"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-green-200 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-green-300 sm:px-8"
+                    >
+                      About
+                    </Link>
                   </div>
                 )}
               </div>
