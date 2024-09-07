@@ -23,7 +23,7 @@
   [headers.values]
     "Cache-Control" = "public, max-age=31536000, s-maxage=31536000"
 
-    [functions]
+    [[functions]]
   node_bundler = "esbuild"
   external_node_modules = ["some-external-library"]
   included_files = ["./path/to/external-file"]
