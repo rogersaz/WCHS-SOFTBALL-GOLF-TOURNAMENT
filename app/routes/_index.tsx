@@ -12,7 +12,14 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default function Index() {
   const user = useOptionalUser();
   return (
-    <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
+    <main 
+      className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center"
+      style={{
+        backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/dimple-background.jpg?raw=true")`,
+        backgroundRepeat: 'repeat', // This will tile the image
+        backgroundSize: 'auto', // Keep the natural size of the image for tiling
+      }}
+    >
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
@@ -39,7 +46,7 @@ export default function Index() {
                     View Notes for {user.email}
                   </Link>
                 ) : (
-                  <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
+                  <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-3 sm:gap-5 sm:space-y-0">
                     <Link
                       to="/join"
                       className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-violet-700 shadow-sm hover:bg-violet-50 sm:px-8"
@@ -51,6 +58,12 @@ export default function Index() {
                       className="flex items-center justify-center rounded-md border border-transparent bg-green-200 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-green-300 sm:px-8"
                     >
                       About
+                    </Link>
+                    <Link
+                      to="/sponsorship"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-blue-200 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-blue-300 sm:px-8"
+                    >
+                      Sponsorship
                     </Link>
                   </div>
                 )}
