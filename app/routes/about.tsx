@@ -18,7 +18,7 @@ export default function Index() {
             <div className="absolute inset-0 flex justify-center">
               <img
                 className="h-full w-full object-cover"
-                src="https://github.com/rogersaz/chYOUz-2/blob/main/public/chYOUz-Background-Pages.jpg?raw=true"
+                src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golfballs-background.jpg?raw=true"
                 alt="Willow Canyon Softball Golf Outing"
               />
               <div className="absolute inset-0 bg-[color:rgba(139,92,246,0.5)] mix-blend-multiply" />
