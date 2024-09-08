@@ -34,7 +34,7 @@ export default function Index() {
             <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-2 sm:pt-10 sm:pb-8 lg:px-8 lg:pt-8">
               <p className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-6xl">
                 <span className="block uppercase text-green-400 drop-shadow-md">
-                  Willow Canyon Softball Golf Tournament Fundraiser
+                  Willow Canyon Softball <br></br>Golf Outing
                 </span>
               </p>
               <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">

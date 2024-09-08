@@ -16,7 +16,7 @@ export default function Index() {
       style={{
         backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/dimple-background.jpg?raw=true")`,
         backgroundRepeat: 'repeat', // Tiles the dimple background image across the page
-        // backgroundSize: 'auto', // Keeps the original size of the dimple background image
+        backgroundSize: 'auto', // Keeps the original size of the dimple background image
       }}
     >
       <div className="relative sm:pb-16 sm:pt-8">
@@ -31,14 +31,10 @@ export default function Index() {
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-[color:rgba(139,92,246,0.5)] mix-blend-multiply" />
+              <div className="absolute inset-0 bg-[color:rgba(0,123,255,0.5)] mix-blend-multiply" />
+
             </div>
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
-              {/* <h1 className="text-center text-6xl font-extrabold sm:text-8xl lg:text-9xl font-montserrat tracking-normal sm:tracking-tighter">
-                <span className="text-orange-500 drop-shadow-md">
-                  &nbsp;&nbsp;&nbsp; WILLOW CANYON SOFTBALL GOLF OUTING &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </span>
-              </h1> */}
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Questions</h2>
                 <p className="mx-auto mt-4 max-w-lg text-left text-xl text-black sm:max-w-3xl font-montserrat">
@@ -65,6 +61,28 @@ export default function Index() {
                 <p className="mx-auto mt-4 max-w-lg text-left text-xl text-black sm:max-w-3xl font-montserrat">
                   Golf, Cart, Range Balls, and Lunch
                 </p>
+              </div>
+
+              {/* Buttons section at the bottom */}
+              <div className="flex justify-center mt-10 space-x-6">
+                <Link
+                  to="/sponsorship"
+                  className="flex items-center justify-center rounded-md bg-blue-500 px-4 py-3 font-medium text-white hover:bg-blue-600 sm:px-8"
+                >
+                  Sponsorship
+                </Link>
+                <Link
+                  to="/signup"
+                  className="flex items-center justify-center rounded-md bg-green-500 px-4 py-3 font-medium text-white hover:bg-green-600 sm:px-8"
+                >
+                  Sign Up
+                </Link>
+                <Link
+                  to="/"
+                  className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600 sm:px-8"
+                >
+                  Home
+                </Link>
               </div>
             </div>
           </div>
