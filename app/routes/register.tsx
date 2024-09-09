@@ -13,54 +13,29 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function SponsorshipForm() {
+export default function RegistrationForm() {
   const [name, setName] = useState("");
-  const [company, setCompany] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [logoFile, setLogoFile] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [teamMember1, setTeamMember1] = useState("");
+  const [teamMember2, setTeamMember2] = useState("");
+  const [teamMember3, setTeamMember3] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
-  const handleFileUpload = async (file) => {
-    setUploadProgress(0);
-    const fileExt = file.name.split(".").pop();
-    const fileName = `${company}-${Date.now()}.${fileExt}`;
-    
-    const { data, error } = await supabase.storage
-      .from("logos")
-      .upload(`public/${fileName}`, file, {
-        cacheControl: "3600",
-        upsert: false,
-      });
-
-    if (error) {
-      console.error("Error uploading file:", error.message);
-      return;
-    }
-
-    setUploadProgress(100);
-    return data.path;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setUploadProgress(0);
-
-    let logoUrl = "";
-    if (logoFile) {
-      logoUrl = await handleFileUpload(logoFile);
-    }
 
     const { error } = await supabase
-      .from("sponsorships")
+      .from("registrations")
       .insert([
-        { name, company, phone, logo: logoUrl }
+        { name, team_name: teamName, email, phone, team_member_1: teamMember1, team_member_2: teamMember2, team_member_3: teamMember3 }
       ]);
 
     if (error) {
       console.error("Error inserting data:", error.message);
     } else {
-      setSuccessMessage("Success! You've just sunk a hole-in-one with that sponsorship submission! ⛳🏌️‍♂️");
+      setSuccessMessage("Success! Your team has been registered.");
     }
   };
 
@@ -68,38 +43,27 @@ export default function SponsorshipForm() {
     <main
       className="relative min-h-screen bg-blue sm:flex sm:items-center sm:justify-center"
       style={{
-        backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/dimple-background.jpg?raw=true")`,
-        backgroundRepeat: 'repeat',
-        backgroundSize: 'auto',
+        backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-hole-mt.jpg?raw=true")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
-            <div 
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-hole-mt.jpg?raw=true")`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
-              <div className="absolute inset-0 bg-[color:rgba(0,123,255,0.5)] mix-blend-multiply" />
-            </div>
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Team and Individual Registration</h2>
-                <p className="text-center text-lg mt-4">you can also pay</p>
-
-                {/* Add this section for the donation cost */}
+                <p className="text-center text-lg mt-4">Register as a team or individual</p>
+                
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
                   Cost $120 per player
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="name">Name</label>
+                    <label className="block text-sm font-bold mb-1" htmlFor="name">Your Name</label>
                     <input 
                       type="text"
                       id="name"
@@ -109,19 +73,31 @@ export default function SponsorshipForm() {
                       required
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="company">Business Name</label>
+                    <label className="block text-sm font-bold mb-1" htmlFor="teamName">Team Name</label>
                     <input 
                       type="text"
-                      id="company"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
+                      id="teamName"
+                      value={teamName}
+                      onChange={(e) => setTeamName(e.target.value)}
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
-                  
+
+                  <div>
+                    <label className="block text-sm font-bold mb-1" htmlFor="email">Email Address</label>
+                    <input 
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    />
+                  </div>
+
                   <div>
                     <label className="block text-sm font-bold mb-1" htmlFor="phone">Phone Number</label>
                     <input 
@@ -135,23 +111,36 @@ export default function SponsorshipForm() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="logo">Upload Logo (.jpg, .jpeg, .png, .pdf)</label>
+                    <label className="block text-sm font-bold mb-1" htmlFor="teamMember1">Team Member 1 (Optional)</label>
                     <input 
-                      type="file"
-                      id="logo"
-                      accept=".jpg,.jpeg,.png,.pdf"
-                      onChange={(e) => setLogoFile(e.target.files[0])}
+                      type="text"
+                      id="teamMember1"
+                      value={teamMember1}
+                      onChange={(e) => setTeamMember1(e.target.value)}
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                      required
                     />
-                    {uploadProgress > 0 && (
-                      <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                        <div
-                          className="bg-blue-600 h-2.5 rounded-full"
-                          style={{ width: `${uploadProgress}%` }}
-                        ></div>
-                      </div>
-                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold mb-1" htmlFor="teamMember2">Team Member 2 (Optional)</label>
+                    <input 
+                      type="text"
+                      id="teamMember2"
+                      value={teamMember2}
+                      onChange={(e) => setTeamMember2(e.target.value)}
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold mb-1" htmlFor="teamMember3">Team Member 3 (Optional)</label>
+                    <input 
+                      type="text"
+                      id="teamMember3"
+                      value={teamMember3}
+                      onChange={(e) => setTeamMember3(e.target.value)}
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
                   </div>
 
                   <div className="flex justify-center mt-6">
@@ -159,7 +148,7 @@ export default function SponsorshipForm() {
                       type="submit" 
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md"
                     >
-                      Submit Entry
+                      Submit Registration
                     </button>
                   </div>
 
