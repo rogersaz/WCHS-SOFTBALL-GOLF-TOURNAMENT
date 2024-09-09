@@ -90,7 +90,12 @@ export default function SponsorshipForm() {
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Sponsorship Form</h2>
-                <p className="text-center text-lg mt-4">Local businesses can sponsor a specific hole. Upload your logo in .jpg, .jpeg, .png, or .pdf formats.</p>
+                <p className="text-center text-lg mt-4">Local businesses can sponsor a specific hole.</p>
+
+                {/* Add this section for the donation cost */}
+                <p className="text-center text-red-600 font-bold text-xl mt-4">
+                  Donation cost $120 per hole
+                </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
