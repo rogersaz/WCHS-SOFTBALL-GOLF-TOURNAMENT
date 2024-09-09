@@ -72,10 +72,10 @@ export default function Index() {
                   Sponsorship
                 </Link>
                 <Link
-                  to="/signup"
+                  to="/register"
                   className="flex items-center justify-center rounded-md bg-green-500 px-4 py-3 font-medium text-white hover:bg-green-600 sm:px-8"
                 >
-                  Sign Up
+                  Register
                 </Link>
                 <Link
                   to="/"

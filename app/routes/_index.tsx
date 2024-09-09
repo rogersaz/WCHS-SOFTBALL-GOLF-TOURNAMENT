@@ -47,10 +47,10 @@ export default function Index() {
                 ) : (
                   <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-3 sm:gap-5 sm:space-y-0">
                     <Link
-                      to="/join"
+                      to="/register"
                       className="flex items-center justify-center rounded-md border border-transparent bg-orange-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-600 sm:px-8"
                     >
-                      Sign up
+                      Register
                     </Link>
                     <Link
                       to="/about"
