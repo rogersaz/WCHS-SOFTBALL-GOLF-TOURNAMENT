@@ -171,7 +171,7 @@ export default function SponsorshipForm() {
                 <div className="flex justify-center mt-10 space-x-6">
                   <Link
                     to="/signup"
-                    className="flex items-center justify-center rounded-md bg-green-500 px-4 py-3 font-medium text-white hover:bg-green-600 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600 sm:px-8"
                   >
                     Sign Up
                   </Link>

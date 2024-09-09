@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { useForm } from "react-hook-form";
 import { Link } from "@remix-run/react";
 import 'tailwindcss/tailwind.css';
 import { useOptionalUser } from "~/utils";
@@ -33,7 +32,7 @@ export default function Index() {
             </div>
             <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-2 sm:pt-10 sm:pb-8 lg:px-8 lg:pt-8">
               <p className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-6xl">
-                <span className="block uppercase text-green-400 drop-shadow-md">
+                <span className="block uppercase text-gray-100 drop-shadow-md">
                   Willow Canyon Softball <br></br>Golf Outing
                 </span>
               </p>
@@ -41,7 +40,7 @@ export default function Index() {
                 {user ? (
                   <Link
                     to="/notes"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-violet-700 shadow-sm hover:bg-violet-50 sm:px-8"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-gray-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-800 sm:px-8"
                   >
                     View Notes for {user.email}
                   </Link>
@@ -49,32 +48,26 @@ export default function Index() {
                   <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-3 sm:gap-5 sm:space-y-0">
                     <Link
                       to="/join"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-violet-700 shadow-sm hover:bg-violet-50 sm:px-8"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-orange-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-600 sm:px-8"
                     >
                       Sign up
                     </Link>
                     <Link
                       to="/about"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-green-200 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-green-300 sm:px-8"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 sm:px-8"
                     >
                       About
                     </Link>
                     <Link
                       to="/sponsorship"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-blue-200 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-blue-300 sm:px-8"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:px-8"
                     >
                       Sponsorship
                     </Link>
                   </div>
                 )}
               </div>
-              <a href="https://remix.run">
-                <img
-                  src="https://user-images.githubusercontent.com/1500684/158298926-e45dafff-3544-4b69-96d6-d3bcc33fc76a.svg"
-                  alt="Remix"
-                  className="mx-auto mt-16 w-full max-w-[12rem] md:max-w-[16rem]"
-                />
-              </a>
+              {/* Removed the Remix logo and link */}
             </div>
           </div>
         </div>
