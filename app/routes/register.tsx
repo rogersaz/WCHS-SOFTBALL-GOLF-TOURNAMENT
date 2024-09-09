@@ -94,7 +94,7 @@ export default function SponsorshipForm() {
 
                 {/* Add this section for the donation cost */}
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
-                  Donation cost $120 per hole
+                  Cost $120 per player
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
