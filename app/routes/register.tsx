@@ -35,7 +35,17 @@ export default function RegistrationForm() {
     if (error) {
       console.error("Error inserting data:", error.message);
     } else {
-      setSuccessMessage("Success! Your team has been registered.");
+      // Clear the form fields after successful submission
+      setName("");
+      setTeamName("");
+      setEmail("");
+      setPhone("");
+      setTeamMember1("");
+      setTeamMember2("");
+      setTeamMember3("");
+
+      // Set a funny golf-themed success message
+      setSuccessMessage("Great shot! Your registration is in the hole! 🏌️‍♂️⛳");
     }
   };
 
@@ -195,3 +205,4 @@ export default function RegistrationForm() {
     </main>
   );
 }
+
