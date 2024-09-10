@@ -35,7 +35,6 @@ export default function RegistrationForm() {
     if (error) {
       console.error("Error inserting data:", error.message);
     } else {
-      // Clear the form fields after successful submission
       setName("");
       setTeamName("");
       setEmail("");
@@ -43,8 +42,6 @@ export default function RegistrationForm() {
       setTeamMember1("");
       setTeamMember2("");
       setTeamMember3("");
-
-      // Set a funny golf-themed success message
       setSuccessMessage("Great shot! Your registration is in the hole! 🏌️‍♂️⛳");
     }
   };
@@ -182,7 +179,7 @@ export default function RegistrationForm() {
                     to="/about"
                     className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600 sm:px-8"
                   >
-                    About
+                    Information
                   </Link>
                   <Link
                     to="/"
@@ -196,7 +193,14 @@ export default function RegistrationForm() {
                   >
                     Sponsorship
                   </Link>
+                  <Link
+                    to="/donate"
+                    className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700 sm:px-8"
+                  >
+                    Donate/Pay
+                  </Link>
                 </div>
+
               </div>
             </div>
           </div>
@@ -205,4 +209,3 @@ export default function RegistrationForm() {
     </main>
   );
 }
-

@@ -17,6 +17,7 @@ export default function SponsorshipForm() {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [logoFile, setLogoFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
 
@@ -45,6 +46,12 @@ export default function SponsorshipForm() {
     e.preventDefault();
     setUploadProgress(0);
 
+    // Email validation to check if "@" exists
+    if (!email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     let logoUrl = "";
     if (logoFile) {
       logoUrl = await handleFileUpload(logoFile);
@@ -53,19 +60,18 @@ export default function SponsorshipForm() {
     const { error } = await supabase
       .from("sponsorships")
       .insert([
-        { name, company, phone, logo: logoUrl }
+        { name, company, phone, email, logo: logoUrl }
       ]);
 
     if (error) {
       console.error("Error inserting data:", error.message);
     } else {
-      // Show success message as a popup
       alert("Success! You've just sunk a hole-in-one with that sponsorship submission! ⛳🏌️‍♂️");
 
-      // Clear the form fields
       setName("");
       setCompany("");
       setPhone("");
+      setEmail("");
       setLogoFile(null);
       setUploadProgress(0);
     }
@@ -99,7 +105,6 @@ export default function SponsorshipForm() {
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Sponsorship Form</h2>
                 <p className="text-center text-lg mt-4">Local businesses can sponsor a specific hole.</p>
 
-                {/* Add this section for the donation cost */}
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
                   Donation cost $120 per hole
                 </p>
@@ -136,6 +141,19 @@ export default function SponsorshipForm() {
                       id="phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    />
+                  </div>
+
+                  {/* Email Field */}
+                  <div>
+                    <label className="block text-sm font-bold mb-1" htmlFor="email">Email Address</label>
+                    <input 
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
@@ -183,6 +201,13 @@ export default function SponsorshipForm() {
                     className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600 sm:px-8"
                   >
                     Home
+                  </Link>
+                  {/* Added Donation Button */}
+                  <Link
+                    to="/donate"
+                    className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700 sm:px-8"
+                  >
+                    Donate/Pay
                   </Link>
                 </div>
               </div>

@@ -28,13 +28,17 @@ export default function Index() {
                 src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/Golfcart-jump.jpeg?raw=true"
                 alt="Coach T driving"
               />
-              <div className="absolute inset-0 bg-[color:rgba(139,92,246,0.5)] mix-blend-multiply" />
+              <div className="absolute inset-0 bg-[color:rgba(0,0,128,0.5)] mix-blend-multiply" />
             </div>
             <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-2 sm:pt-10 sm:pb-8 lg:px-8 lg:pt-8">
               <p className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-6xl">
                 <span className="block uppercase text-gray-100 drop-shadow-md">
                   Willow Canyon Softball <br></br>Golf Outing
                 </span>
+              </p>
+              {/* Added the white text below the title */}
+              <p className="text-center text-white text-lg mt-4">
+                Sunday, November 10, 2024
               </p>
               <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                 {user ? (
@@ -45,7 +49,7 @@ export default function Index() {
                     View Notes for {user.email}
                   </Link>
                 ) : (
-                  <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-3 sm:gap-5 sm:space-y-0">
+                  <div className="flex space-x-4">
                     <Link
                       to="/register"
                       className="flex items-center justify-center rounded-md border border-transparent bg-orange-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-600 sm:px-8"
@@ -56,13 +60,20 @@ export default function Index() {
                       to="/about"
                       className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 sm:px-8"
                     >
-                      About
+                      Information
                     </Link>
                     <Link
                       to="/sponsorship"
                       className="flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 sm:px-8"
                     >
                       Sponsorship
+                    </Link>
+                    {/* Donation/Payment Button */}
+                    <Link
+                      to="/donate"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700 sm:px-8"
+                    >
+                      Donate/Pay
                     </Link>
                   </div>
                 )}
@@ -75,3 +86,4 @@ export default function Index() {
     </main>
   );
 }
+
