@@ -43,20 +43,30 @@ export default function RegistrationForm() {
     <main
       className="relative min-h-screen bg-blue sm:flex sm:items-center sm:justify-center"
       style={{
-        backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-hole-mt.jpg?raw=true")`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/dimple-background.jpg?raw=true")`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: 'auto',
       }}
     >
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-hole-mt.jpg?raw=true")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div className="absolute inset-0 bg-[color:rgba(0,123,255,0.5)] mix-blend-multiply" />
+            </div>
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Team and Individual Registration</h2>
                 <p className="text-center text-lg mt-4">Register as a team or individual</p>
-                
+
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
                   Cost $120 per player
                 </p>
@@ -159,16 +169,22 @@ export default function RegistrationForm() {
 
                 <div className="flex justify-center mt-10 space-x-6">
                   <Link
-                    to="/register"
+                    to="/about"
                     className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600 sm:px-8"
                   >
-                    Register
+                    About
                   </Link>
                   <Link
                     to="/"
                     className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600 sm:px-8"
                   >
                     Home
+                  </Link>
+                  <Link
+                    to="/sponsorship"
+                    className="flex items-center justify-center rounded-md bg-green-500 px-4 py-3 font-medium text-white hover:bg-green-600 sm:px-8"
+                  >
+                    Sponsorship
                   </Link>
                 </div>
               </div>
