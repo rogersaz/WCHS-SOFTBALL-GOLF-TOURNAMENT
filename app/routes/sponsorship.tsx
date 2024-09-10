@@ -19,7 +19,6 @@ export default function SponsorshipForm() {
   const [phone, setPhone] = useState("");
   const [logoFile, setLogoFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [successMessage, setSuccessMessage] = useState("");
 
   const handleFileUpload = async (file) => {
     setUploadProgress(0);
@@ -60,7 +59,15 @@ export default function SponsorshipForm() {
     if (error) {
       console.error("Error inserting data:", error.message);
     } else {
-      setSuccessMessage("Success! You've just sunk a hole-in-one with that sponsorship submission! ⛳🏌️‍♂️");
+      // Show success message as a popup
+      alert("Success! You've just sunk a hole-in-one with that sponsorship submission! ⛳🏌️‍♂️");
+
+      // Clear the form fields
+      setName("");
+      setCompany("");
+      setPhone("");
+      setLogoFile(null);
+      setUploadProgress(0);
     }
   };
 
@@ -162,10 +169,6 @@ export default function SponsorshipForm() {
                       Submit Sponsorship
                     </button>
                   </div>
-
-                  {successMessage && (
-                    <p className="mt-4 text-green-500 text-center">{successMessage}</p>
-                  )}
                 </form>
 
                 <div className="flex justify-center mt-10 space-x-6">
