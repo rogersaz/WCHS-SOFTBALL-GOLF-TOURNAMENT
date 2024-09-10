@@ -28,7 +28,7 @@ export default function Index() {
                 src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golfball-money.jpg?raw=true"
                 alt="Coach T driving"
               />
-              <div className="absolute inset-0 bg-[color:rgba(0,0,128,0.5)] mix-blend-multiply" />
+              <div className="absolute inset-0 bg-[color:rgba(0,0,128,0.4)] mix-blend-multiply" />
             </div>
             <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-2 sm:pt-10 sm:pb-8 lg:px-8 lg:pt-8">
               <p className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-6xl">
