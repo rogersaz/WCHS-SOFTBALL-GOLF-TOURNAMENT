@@ -181,28 +181,28 @@ export default function RegistrationForm() {
                   )}
                 </form>
 
-                <div className="flex justify-center mt-10 space-x-6">
+                <div className="flex flex-col sm:flex-row justify-center mt-10 space-y-4 sm:space-y-0 sm:space-x-6">
                   <Link
                     to="/about"
-                    className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600"
                   >
                     Information
                   </Link>
                   <Link
                     to="/"
-                    className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600"
                   >
                     Home
                   </Link>
                   <Link
                     to="/sponsorship"
-                    className="flex items-center justify-center rounded-md bg-green-500 px-4 py-3 font-medium text-white hover:bg-green-600 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-green-500 px-4 py-3 font-medium text-white hover:bg-green-600"
                   >
                     Sponsorship
                   </Link>
                   <Link
                     to="/donate"
-                    className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700"
                   >
                     Donate/Pay
                   </Link>

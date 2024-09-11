@@ -77,7 +77,6 @@ export default function PencilMeIn() {
                 {/* Form for Name and Email */}
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4 max-w-md mx-auto">
                   <div>
-                    
                     <input
                       type="text"
                       id="name"
@@ -90,7 +89,6 @@ export default function PencilMeIn() {
                   </div>
 
                   <div>
-                    
                     <input
                       type="email"
                       id="email"
@@ -115,7 +113,7 @@ export default function PencilMeIn() {
                 </form>
 
                 {/* Buttons Below Form */}
-                <div className="flex flex-wrap justify-center space-x-4 mt-8">
+                <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 justify-center mt-8">
                   <Link
                     to="/"
                     className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600 sm:px-8"

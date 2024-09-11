@@ -186,23 +186,22 @@ export default function SponsorshipForm() {
                   </div>
                 </form>
 
-                <div className="flex justify-center mt-10 space-x-6">
+                <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 justify-center mt-10">
                   <Link
                     to="/register"
-                    className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600"
                   >
                     Register
                   </Link>
                   <Link
                     to="/"
-                    className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600"
                   >
                     Home
                   </Link>
-                  {/* Added Donation Button */}
                   <Link
                     to="/donate"
-                    className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700 sm:px-8"
+                    className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700"
                   >
                     Donate/Pay
                   </Link>

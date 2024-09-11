@@ -64,7 +64,7 @@ export default function Index() {
               </div>
 
               {/* Buttons section at the bottom */}
-              <div className="flex justify-center mt-10 space-x-6">
+              <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 justify-center mt-10">
                 <Link
                   to="/sponsorship"
                   className="flex items-center justify-center rounded-md bg-blue-500 px-4 py-3 font-medium text-white hover:bg-blue-600 sm:px-8"

@@ -49,7 +49,7 @@ export default function Index() {
                     View Notes for {user.email}
                   </Link>
                 ) : (
-                  <div className="flex space-x-4">
+                  <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                     <Link
                       to="/register"
                       className="flex items-center justify-center rounded-md border border-transparent bg-orange-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-600 sm:px-8"
