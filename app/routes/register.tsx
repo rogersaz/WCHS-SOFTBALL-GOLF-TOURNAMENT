@@ -87,6 +87,7 @@ export default function RegistrationForm() {
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your Name"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      maxLength={61}
                       required
                     />
                   </div>
@@ -99,6 +100,7 @@ export default function RegistrationForm() {
                       onChange={(e) => setTeamName(e.target.value)}
                       placeholder="Team Name"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      maxLength={61}
                       required
                     />
                   </div>
@@ -111,6 +113,7 @@ export default function RegistrationForm() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email Address"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      maxLength={61}
                       required
                     />
                   </div>
@@ -123,6 +126,7 @@ export default function RegistrationForm() {
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="Phone Number"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      maxLength={61}
                       required
                     />
                   </div>
@@ -135,6 +139,7 @@ export default function RegistrationForm() {
                       onChange={(e) => setTeamMember1(e.target.value)}
                       placeholder="Team Member 1 (Optional)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      maxLength={61}
                     />
                   </div>
 
@@ -146,6 +151,7 @@ export default function RegistrationForm() {
                       onChange={(e) => setTeamMember2(e.target.value)}
                       placeholder="Team Member 2 (Optional)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      maxLength={61}
                     />
                   </div>
 
@@ -157,6 +163,7 @@ export default function RegistrationForm() {
                       onChange={(e) => setTeamMember3(e.target.value)}
                       placeholder="Team Member 3 (Optional)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      maxLength={61}
                     />
                   </div>
 
