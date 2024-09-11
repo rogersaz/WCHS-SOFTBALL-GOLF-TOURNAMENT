@@ -80,82 +80,82 @@ export default function RegistrationForm() {
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="name">Your Name</label>
                     <input 
                       type="text"
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      placeholder="Your Name"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="teamName">Team Name</label>
                     <input 
                       type="text"
                       id="teamName"
                       value={teamName}
                       onChange={(e) => setTeamName(e.target.value)}
+                      placeholder="Team Name"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="email">Email Address</label>
                     <input 
                       type="email"
                       id="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email Address"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="phone">Phone Number</label>
                     <input 
                       type="text"
                       id="phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
+                      placeholder="Phone Number"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="teamMember1">Team Member 1 (Optional)</label>
                     <input 
                       type="text"
                       id="teamMember1"
                       value={teamMember1}
                       onChange={(e) => setTeamMember1(e.target.value)}
+                      placeholder="Team Member 1 (Optional)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="teamMember2">Team Member 2 (Optional)</label>
                     <input 
                       type="text"
                       id="teamMember2"
                       value={teamMember2}
                       onChange={(e) => setTeamMember2(e.target.value)}
+                      placeholder="Team Member 2 (Optional)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="teamMember3">Team Member 3 (Optional)</label>
                     <input 
                       type="text"
                       id="teamMember3"
                       value={teamMember3}
                       onChange={(e) => setTeamMember3(e.target.value)}
+                      placeholder="Team Member 3 (Optional)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>

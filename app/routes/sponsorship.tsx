@@ -59,9 +59,7 @@ export default function SponsorshipForm() {
 
     const { error } = await supabase
       .from("sponsorships")
-      .insert([
-        { name, company, phone, email, logo: logoUrl }
-      ]);
+      .insert([{ name, company, phone, email, logo: logoUrl }]);
 
     if (error) {
       console.error("Error inserting data:", error.message);
@@ -111,49 +109,48 @@ export default function SponsorshipForm() {
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="name">Name</label>
                     <input 
                       type="text"
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      placeholder="Name"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="company">Business Name</label>
                     <input 
                       type="text"
                       id="company"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
+                      placeholder="Business Name"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="phone">Phone Number</label>
                     <input 
                       type="text"
                       id="phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
+                      placeholder="Phone Number"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
 
-                  {/* Email Field */}
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="email">Email Address</label>
                     <input 
                       type="email"
                       id="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email Address"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
