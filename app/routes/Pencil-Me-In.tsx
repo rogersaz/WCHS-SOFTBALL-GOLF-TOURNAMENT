@@ -77,24 +77,26 @@ export default function PencilMeIn() {
                 {/* Form for Name and Email */}
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4 max-w-md mx-auto">
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="name">Name</label>
+                    
                     <input
                       type="text"
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      placeholder="Name"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold mb-1" htmlFor="email">Email Address</label>
+                    
                     <input
                       type="email"
                       id="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email Address"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
