@@ -20,6 +20,7 @@ export default function SponsorshipForm() {
   const [email, setEmail] = useState("");
   const [logoFile, setLogoFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleFileUpload = async (file) => {
     setUploadProgress(0);
@@ -45,10 +46,18 @@ export default function SponsorshipForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploadProgress(0);
+    setErrorMessage("");
 
     // Email validation to check if "@" exists
     if (!email.includes("@")) {
       alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Phone number validation
+    const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+    if (!phonePattern.test(phone)) {
+      setErrorMessage("Fore! 🏌️‍♂️ Your phone number's out of bounds! It needs to be in the format xxx-xxx-xxxx. Please adjust your swing and try again!");
       return;
     }
 
@@ -140,6 +149,8 @@ export default function SponsorshipForm() {
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="Phone Number"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      pattern="\d{3}-\d{3}-\d{4}"
+                      title="Phone number must be in the format xxx-xxx-xxxx"
                       required
                     />
                   </div>
@@ -175,6 +186,10 @@ export default function SponsorshipForm() {
                       </div>
                     )}
                   </div>
+
+                  {errorMessage && (
+                    <p className="mt-4 text-red-600 text-center">{errorMessage}</p>
+                  )}
 
                   <div className="flex justify-center mt-6">
                     <button 

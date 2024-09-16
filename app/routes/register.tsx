@@ -22,9 +22,17 @@ export default function RegistrationForm() {
   const [teamMember2, setTeamMember2] = useState("");
   const [teamMember3, setTeamMember3] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!phonePattern.test(phone)) {
+      setErrorMessage("Fore! 🏌️‍♂️ Your phone number needs to be in the format xxx-xxx-xxxx. Please fix that slice and try again.");
+      return;
+    }
 
     const { error } = await supabase
       .from("registrations")
@@ -43,6 +51,7 @@ export default function RegistrationForm() {
       setTeamMember2("");
       setTeamMember3("");
       setSuccessMessage("Great shot! Your registration is in the hole! 🏌️‍♂️⛳");
+      setErrorMessage("");  // Clear any previous error message
     }
   };
 
@@ -126,8 +135,10 @@ export default function RegistrationForm() {
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="Phone Number"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                      maxLength={61}
+                      maxLength={12} // Adjust maxLength to match the format
                       required
+                      pattern="\d{3}-\d{3}-\d{4}" // Regex pattern for validation
+                      title="Oops! Looks like your phone number's in the sand trap. 🏌️‍♂️⛳ Make sure it's in the format xxx-xxx-xxxx before you tee off on that submit button!"
                     />
                   </div>
 
@@ -178,6 +189,10 @@ export default function RegistrationForm() {
 
                   {successMessage && (
                     <p className="mt-4 text-green-500 text-center">{successMessage}</p>
+                  )}
+
+                  {errorMessage && (
+                    <p className="mt-4 text-red-500 text-center">{errorMessage}</p>
                   )}
                 </form>
 
