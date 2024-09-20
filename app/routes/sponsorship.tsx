@@ -19,6 +19,7 @@ export default function SponsorshipForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [logoFile, setLogoFile] = useState(null);
+  const [sponsorshipLevel, setSponsorshipLevel] = useState("50");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -68,7 +69,7 @@ export default function SponsorshipForm() {
 
     const { error } = await supabase
       .from("sponsorships")
-      .insert([{ name, company, phone, email, logo: logoUrl }]);
+      .insert([{ name, company, phone, email, logo: logoUrl, sponsorship_level: sponsorshipLevel }]);
 
     if (error) {
       console.error("Error inserting data:", error.message);
@@ -80,6 +81,7 @@ export default function SponsorshipForm() {
       setPhone("");
       setEmail("");
       setLogoFile(null);
+      setSponsorshipLevel("50");
       setUploadProgress(0);
     }
   };
@@ -185,6 +187,21 @@ export default function SponsorshipForm() {
                         ></div>
                       </div>
                     )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold mb-1" htmlFor="sponsorshipLevel">Sponsorship Level</label>
+                    <select 
+                      id="sponsorshipLevel"
+                      value={sponsorshipLevel}
+                      onChange={(e) => setSponsorshipLevel(e.target.value)}
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    >
+                      <option value="50">Level 1 - $50</option>
+                      <option value="100">Level 2 - $100</option>
+                      <option value="150">Level 3 - $150</option>
+                    </select>
                   </div>
 
                   {errorMessage && (
