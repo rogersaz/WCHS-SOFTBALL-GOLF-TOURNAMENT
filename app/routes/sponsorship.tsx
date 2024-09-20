@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Link, MetaFunction } from "@remix-run/react";
 
 const supabaseUrl = 'https://rnrbhrdtuakgdenosfgj.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiIsInJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const meta: MetaFunction = () => {
@@ -19,7 +19,7 @@ export default function SponsorshipForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [logoFile, setLogoFile] = useState(null);
-  const [sponsorshipLevel, setSponsorshipLevel] = useState("50");
+  const [sponsorshipLevel, setSponsorshipLevel] = useState("Birdie");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -81,7 +81,7 @@ export default function SponsorshipForm() {
       setPhone("");
       setEmail("");
       setLogoFile(null);
-      setSponsorshipLevel("50");
+      setSponsorshipLevel("Birdie");
       setUploadProgress(0);
     }
   };
@@ -198,9 +198,9 @@ export default function SponsorshipForm() {
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     >
-                      <option value="50">Level 1 - $50</option>
-                      <option value="100">Level 2 - $100</option>
-                      <option value="150">Level 3 - $150</option>
+                      <option value="Birdie">Birdie Sponsor - $50</option>
+                      <option value="Eagle">Eagle Sponsor - $100</option>
+                      <option value="Hole1">Hole-In-One Sponsor - $150</option>
                     </select>
                   </div>
 
