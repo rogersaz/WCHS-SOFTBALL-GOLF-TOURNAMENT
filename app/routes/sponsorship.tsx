@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { Link, MetaFunction, Form } from "@remix-run/react";
+import { Link, MetaFunction } from "@remix-run/react";
 
 const supabaseUrl = 'https://rnrbhrdtuakgdenosfgj.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiIsInJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA';
@@ -118,7 +118,7 @@ export default function SponsorshipForm() {
                   Donation cost $150 per hole
                 </p>
 
-                <Form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
                     <input 
                       type="text"
@@ -200,7 +200,7 @@ export default function SponsorshipForm() {
                     >
                       <option value="Birdie">Birdie Sponsor - $50</option>
                       <option value="Eagle">Eagle Sponsor - $100</option>
-                      <option value="Albatross">Albatross Sponsor - $150</option>
+                      <option value="Hole1">Hole-In-One Sponsor - $150</option>
                     </select>
                   </div>
 
@@ -211,35 +211,31 @@ export default function SponsorshipForm() {
                   <div className="flex justify-center mt-6">
                     <button 
                       type="submit" 
-                      className="group relative min-h-[50px] w-40 overflow-hidden border border-red-500 bg-white text-red-500 shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-red-500 before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-red-500 after:duration-500 hover:text-white hover:before:h-full hover:after:h-full"
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md"
                     >
-                      <span className="top-0 flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-red-500 before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-red-500 after:duration-500 hover:text-white group-hover:before:h-full group-hover:after:h-full"></span>
-                      <span className="absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-white">Submit Sponsorship</span>
+                      Submit Sponsorship
                     </button>
                   </div>
-                </Form>
+                </form>
 
                 <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 justify-center mt-10">
                   <Link
                     to="/register"
-                    className="group relative min-h-[50px] w-40 overflow-hidden border border-blue-500 bg-white text-blue-500 shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-blue-500 before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-blue-500 after:duration-500 hover:text-white hover:before:h-full hover:after:h-full"
+                    className="flex items-center justify-center rounded-md bg-orange-500 px-4 py-3 font-medium text-white hover:bg-orange-600"
                   >
-                    <span className="top-0 flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-blue-500 before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-blue-500 after:duration-500 hover:text-white group-hover:before:h-full group-hover:after:h-full"></span>
-                    <span className="absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-white">Register</span>
+                    Register
                   </Link>
                   <Link
                     to="/"
-                    className="group relative min-h-[50px] w-40 overflow-hidden border border-green-500 bg-white text-green-500 shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-green-500 before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-green-500 after:duration-500 hover:text-white hover:before:h-full hover:after:h-full"
+                    className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600"
                   >
-                    <span className="top-0 flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-green-500 before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-green-500 after:duration-500 hover:text-white group-hover:before:h-full group-hover:after:h-full"></span>
-                    <span className="absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-white">Home</span>
+                    Home
                   </Link>
                   <Link
                     to="/donate"
-                    className="group relative min-h-[50px] w-40 overflow-hidden border border-orange-500 bg-white text-orange-500 shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-orange-500 before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-orange-500 after:duration-500 hover:text-white hover:before:h-full hover:after:h-full"
+                    className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700"
                   >
-                    <span className="top-0 flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-orange-500 before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-orange-500 after:duration-500 hover:text-white group-hover:before:h-full group-hover:after:h-full"></span>
-                    <span className="absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-white">Donate/Pay</span>
+                    Donate/Pay
                   </Link>
                 </div>
               </div>
