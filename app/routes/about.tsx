@@ -38,7 +38,7 @@ export default function Index() {
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Questions</h2>
                 <p className="mx-auto mt-4 max-w-lg text-left text-xl text-black sm:max-w-3xl font-montserrat">
-                  Contact <b>Angie Tizzano</b> at <a href="mailto:angie.tizzano@gmail.com">angie.tizzano@gmail.com</a> <br></br> <b>Coach Tizzano</b> at <a href="mailto:Coachtizzano@gmal.com">Coachtizzano@gmal.com</a>.
+                  Contact <b>Angie Tizzano</b> at <a href="mailto:angie.tizzano@gmail.com">angie.tizzano@gmail.com</a> <br></br> <b>Coach Tizzano</b> at <a href="mailto:Coachtizzano@gmail.com">Coachtizzano@gmail.com</a>.
                 </p>
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Save the Date!</h2>
                 <p className="mx-auto mt-4 max-w-lg text-left text-xl text-black sm:max-w-3xl font-montserrat">
