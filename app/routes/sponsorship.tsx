@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Link, MetaFunction } from "@remix-run/react";
 
 const supabaseUrl = 'https://rnrbhrdtuakgdenosfgj.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiIsInJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA';
+const supabaseKey = 'YOUR_SUPABASE_KEY'; // Replace with your actual Supabase key
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const meta: MetaFunction = () => {
@@ -49,7 +49,7 @@ export default function SponsorshipForm() {
     setUploadProgress(0);
     setErrorMessage("");
 
-    // Email validation to check if "@" exists
+    // Email validation
     if (!email.includes("@")) {
       alert("Please enter a valid email address.");
       return;
@@ -76,6 +76,7 @@ export default function SponsorshipForm() {
     } else {
       alert("Success! You've just sunk a hole-in-one with that sponsorship submission! ⛳🏌️‍♂️");
 
+      // Reset form fields
       setName("");
       setCompany("");
       setPhone("");
@@ -112,12 +113,105 @@ export default function SponsorshipForm() {
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Sponsorship Form</h2>
-                <p className="text-center text-lg mt-4">Local businesses can sponsor a specific hole.<br></br>Hole Sponsor - $150 One sign with your logo placed at a hole.</p>
+                <p className="text-center text-lg mt-4">
+                  Local businesses can sponsor a specific hole.<br />
+                  Hole Sponsor - $150 One sign with your logo placed at a hole.
+                </p>
 
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
                   Donation cost $150 per hole
                 </p>
 
+                {/* New Cards Start Here */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                  {/* Par Sponsor */}
+                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                    <Link to="/donate">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Par Sponsor</h5>
+                    </Link>
+                    <p className="mb-3 font-normal text-gray-700">$75.00 order NOW</p>
+                    <Link
+                      to="/donate"
+                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300"
+                    >
+                      Read more
+                      <svg
+                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M1 5h12m0 0L9 1m4 4L9 9"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                  {/* Birdie Sponsor */}
+                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                    <Link to="/donate">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Birdie Sponsor</h5>
+                    </Link>
+                    <p className="mb-3 font-normal text-gray-700">$100.00 order NOW</p>
+                    <Link
+                      to="/donate"
+                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                    >
+                      Read more
+                      <svg
+                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M1 5h12m0 0L9 1m4 4L9 9"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                  {/* Eagle Sponsor */}
+                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                    <Link to="/donate">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Eagle Sponsor</h5>
+                    </Link>
+                    <p className="mb-3 font-normal text-gray-700">$150.00 order NOW</p>
+                    <Link
+                      to="/donate"
+                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300"
+                    >
+                      Read more
+                      <svg
+                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M1 5h12m0 0L9 1m4 4L9 9"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+                {/* New Cards End Here */}
+
+                {/* Sponsorship Form */}
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
                     <input 
@@ -149,7 +243,7 @@ export default function SponsorshipForm() {
                       id="phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="Phone Number"
+                      placeholder="Phone Number (xxx-xxx-xxxx)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       pattern="\d{3}-\d{3}-\d{4}"
                       title="Phone number must be in the format xxx-xxx-xxxx"
@@ -198,9 +292,9 @@ export default function SponsorshipForm() {
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       required
                     >
-                      <option value="Birdie">Birdie Sponsor - $50</option>
-                      <option value="Eagle">Eagle Sponsor - $100</option>
-                      <option value="Hole1">Hole-In-One Sponsor - $150</option>
+                      <option value="Par">Par Sponsor - $75</option>
+                      <option value="Birdie">Birdie Sponsor - $100</option>
+                      <option value="Eagle">Eagle Sponsor - $150</option>
                     </select>
                   </div>
 
@@ -246,3 +340,4 @@ export default function SponsorshipForm() {
     </main>
   );
 }
+
