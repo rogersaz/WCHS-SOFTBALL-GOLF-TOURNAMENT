@@ -134,7 +134,7 @@ export default function SponsorshipForm() {
                       to="/donate"
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300"
                     >
-                      Read more
+                      Donate/Pay
                       <svg
                         className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                         aria-hidden="true"
@@ -162,7 +162,7 @@ export default function SponsorshipForm() {
                       to="/donate"
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
                     >
-                      Read more
+                      Donate/Pay
                       <svg
                         className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                         aria-hidden="true"
@@ -190,7 +190,7 @@ export default function SponsorshipForm() {
                       to="/donate"
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300"
                     >
-                      Read more
+                      Donate/Pay
                       <svg
                         className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                         aria-hidden="true"
