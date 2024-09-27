@@ -118,9 +118,7 @@ export default function SponsorshipForm() {
                   Hole Sponsor - $150 One sign with your logo placed at a hole.
                 </p>
 
-                <p className="text-center text-red-600 font-bold text-xl mt-4">
-                  Donation cost $150 per hole
-                </p>
+                
 
                 {/* New Cards Start Here */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
