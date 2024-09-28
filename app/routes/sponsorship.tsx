@@ -118,6 +118,55 @@ export default function SponsorshipForm() {
                 
                 </p>
 
+                <div>
+  <h2 className="text-2xl font-bold mt-8">Sponsorship Form</h2>
+  <p className="mt-4">
+    We are thrilled to offer three levels of sponsorship for the Willow Canyon Softball Golf Outing.
+    Your generous contribution will support our softball program and make this event a memorable
+    experience for all participants.
+  </p>
+
+  <h3 className="text-xl font-semibold mt-6">1. Birdie Sponsor - $75</h3>
+  <ul className="list-disc list-inside ml-4 mt-2">
+    <li>
+      <strong>Company Recognition:</strong> Your business name listed on our official event website.
+    </li>
+    <li>
+      <strong>Social Media Shout-out:</strong> Acknowledgment on our social media platforms thanking
+      your company for its support.
+    </li>
+  </ul>
+
+  <h3 className="text-xl font-semibold mt-6">2. Eagle Sponsor - $100</h3>
+  <ul className="list-disc list-inside ml-4 mt-2">
+    <li>
+      <strong>Includes all Birdie Sponsor benefits, plus:</strong>
+    </li>
+    <li>
+      <strong>Logo Placement:</strong> Your company logo featured on event promotional materials.
+    </li>
+    <li>
+      <strong>Event Signage:</strong> Recognition on banners displayed at the event venue.
+    </li>
+  </ul>
+
+  <h3 className="text-xl font-semibold mt-6">3. Hole-in-One Sponsor - $150</h3>
+  <ul className="list-disc list-inside ml-4 mt-2">
+    <li>
+      <strong>Includes all Eagle Sponsor benefits, plus:</strong>
+    </li>
+    <li>
+      <strong>Exclusive Hole Signage:</strong> Your company's logo prominently displayed on signage
+      at one of the golf holes.
+    </li>
+    <li>
+      <strong>Verbal Recognition:</strong> Special mention during the event's opening and closing
+      ceremonies.
+    </li>
+  </ul>
+</div>
+
+
                 
 
                 {/* Sponsorship Cards with Icons */}
