@@ -126,7 +126,7 @@ export default function SponsorshipForm() {
                 {/* Sponsorship Cards with Icons */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
                   {/* Single Sponsor */}
-                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                  <div className="max-w-sm mx-auto p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow">
                     <img
                       src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-catch.png?raw=true"
                       alt="Single Sponsor Icon"
@@ -147,7 +147,7 @@ export default function SponsorshipForm() {
                     </Link>
                   </div>
                   {/* Double Sponsor */}
-                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                  <div className="max-w-sm mx-auto p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow">
                     <img
                       src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-hit.png?raw=true"
                       alt="Double Sponsor Icon"
@@ -169,7 +169,7 @@ export default function SponsorshipForm() {
                     </Link>
                   </div>
                   {/* Triple Sponsor */}
-                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                  <div className="max-w-sm mx-auto p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow">
                     <img
                       src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-pitching.png?raw=true"
                       alt="Triple Sponsor Icon"
@@ -192,7 +192,7 @@ export default function SponsorshipForm() {
                     </Link>
                   </div>
                   {/* Grand Slam Sponsor */}
-                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                  <div className="max-w-sm mx-auto p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow">
                     <img
                       src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-throw.png?raw=true"
                       alt="Grand Slam Sponsor Icon"
