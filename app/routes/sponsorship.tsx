@@ -3,7 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 import { Link, MetaFunction } from "@remix-run/react";
 
 const supabaseUrl = 'https://rnrbhrdtuakgdenosfgj.supabase.co';
-const supabaseKey = 'YOUR_SUPABASE_KEY'; // Replace with your actual Supabase key
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA';
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const meta: MetaFunction = () => {
@@ -127,7 +128,7 @@ export default function SponsorshipForm() {
                   {/* Single Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <img
-                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-man.png?raw=true"
+                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-catch.png?raw=true"
                       alt="Single Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
@@ -148,7 +149,7 @@ export default function SponsorshipForm() {
                   {/* Double Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <img
-                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-man-flag.png?raw=true"
+                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-hit.png?raw=true"
                       alt="Double Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
@@ -170,7 +171,7 @@ export default function SponsorshipForm() {
                   {/* Triple Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <img
-                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-cart-icon.png?raw=true"
+                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-pitching.png?raw=true"
                       alt="Triple Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
@@ -193,7 +194,7 @@ export default function SponsorshipForm() {
                   {/* Grand Slam Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <img
-                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-trophy-icon.png?raw=true"
+                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/icons-softball-throw.png?raw=true"
                       alt="Grand Slam Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
