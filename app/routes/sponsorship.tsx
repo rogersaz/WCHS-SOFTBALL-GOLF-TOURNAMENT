@@ -19,7 +19,7 @@ export default function SponsorshipForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [logoFile, setLogoFile] = useState(null);
-  const [sponsorshipLevel, setSponsorshipLevel] = useState("Birdie");
+  const [sponsorshipLevel, setSponsorshipLevel] = useState("Single");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -82,7 +82,7 @@ export default function SponsorshipForm() {
       setPhone("");
       setEmail("");
       setLogoFile(null);
-      setSponsorshipLevel("Birdie");
+      setSponsorshipLevel("Single");
       setUploadProgress(0);
     }
   };
@@ -99,7 +99,7 @@ export default function SponsorshipForm() {
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
-            <div 
+            <div
               className="absolute inset-0"
               style={{
                 backgroundImage: `url("https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/Golf-Hole-Sun.jpg?raw=true")`,
@@ -111,163 +111,106 @@ export default function SponsorshipForm() {
               <div className="absolute inset-0 bg-[color:rgba(0,123,255,0.5)] mix-blend-multiply" />
             </div>
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
-              <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
-                <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Sponsorship Form</h2>
+              <div
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
+                className="p-6 rounded-lg shadow-lg text-gray-800"
+              >
+                <h2 className="text-center text-4xl text-black mt-8 font-montserrat">
+                  Sponsorship Form
+                </h2>
                 <p className="text-center text-lg mt-4">
-                  Three different sponsor options.<br />
-                
+                  Local businesses can sponsor our event at various levels. Your generous contribution will support our softball program and make this event a memorable experience for all participants.
                 </p>
 
-                <div>
-  <h2 className="text-2xl font-bold mt-8">Sponsorship Form</h2>
-  <p className="mt-4">
-    We are thrilled to offer three levels of sponsorship for the Willow Canyon Softball Golf Outing.
-    Your generous contribution will support our softball program and make this event a memorable
-    experience for all participants.
-  </p>
-
-  <h3 className="text-xl font-semibold mt-6">1. Birdie Sponsor - $75</h3>
-  <ul className="list-disc list-inside ml-4 mt-2">
-    <li>
-      <strong>Company Recognition:</strong> Your business name listed on our official event website.
-    </li>
-    <li>
-      <strong>Social Media Shout-out:</strong> Acknowledgment on our social media platforms thanking
-      your company for its support.
-    </li>
-  </ul>
-
-  <h3 className="text-xl font-semibold mt-6">2. Eagle Sponsor - $100</h3>
-  <ul className="list-disc list-inside ml-4 mt-2">
-    <li>
-      <strong>Includes all Birdie Sponsor benefits, plus:</strong>
-    </li>
-    <li>
-      <strong>Logo Placement:</strong> Your company logo featured on event promotional materials.
-    </li>
-    <li>
-      <strong>Event Signage:</strong> Recognition on banners displayed at the event venue.
-    </li>
-  </ul>
-
-  <h3 className="text-xl font-semibold mt-6">3. Hole-in-One Sponsor - $150</h3>
-  <ul className="list-disc list-inside ml-4 mt-2">
-    <li>
-      <strong>Includes all Eagle Sponsor benefits, plus:</strong>
-    </li>
-    <li>
-      <strong>Exclusive Hole Signage:</strong> Your company's logo prominently displayed on signage
-      at one of the golf holes.
-    </li>
-    <li>
-      <strong>Verbal Recognition:</strong> Special mention during the event's opening and closing
-      ceremonies.
-    </li>
-  </ul>
-</div>
-
-
-                
-
                 {/* Sponsorship Cards with Icons */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                  {/* Par Sponsor */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+                  {/* Single Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <img
                       src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-man.png?raw=true"
-                      alt="Birdie Sponsor Icon"
+                      alt="Single Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
                     <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Par Sponsor</h5>
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Single Sponsor</h5>
                     </Link>
-                    <p className="mb-3 font-normal text-gray-700">$75.00 order NOW</p>
+                    <p className="mb-3 font-semibold text-lg text-gray-700">$150</p>
+                    <ul className="mb-3 text-gray-700">
+                      <li>1 Hole Sponsor Sign</li>
+                    </ul>
                     <Link
                       to="/donate"
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300"
                     >
-                      Read more
-                      <svg
-                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
+                      Donate
                     </Link>
                   </div>
-                  {/* Birdie Sponsor */}
+                  {/* Double Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <img
                       src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-man-flag.png?raw=true"
-                      alt="Eagle Sponsor Icon"
+                      alt="Double Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
                     <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Birdie Sponsor</h5>
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Double Sponsor</h5>
                     </Link>
-                    <p className="mb-3 font-normal text-gray-700">$100.00 order NOW</p>
+                    <p className="mb-3 font-semibold text-lg text-gray-700">$600</p>
+                    <ul className="mb-3 text-gray-700">
+                      <li>1 Hole Sponsor Sign</li>
+                      <li>1 Foursome Tournament Entry</li>
+                    </ul>
                     <Link
                       to="/donate"
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
                     >
-                      Read more
-                      <svg
-                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
+                      Donate
                     </Link>
                   </div>
-                  {/* Eagle Sponsor */}
+                  {/* Triple Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <img
                       src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-cart-icon.png?raw=true"
-                      alt="Hole-in-One Sponsor Icon"
+                      alt="Triple Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
                     <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Eagle Sponsor</h5>
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Triple Sponsor</h5>
                     </Link>
-                    <p className="mb-3 font-normal text-gray-700">$150.00 order NOW</p>
+                    <p className="mb-3 font-semibold text-lg text-gray-700">$1,000</p>
+                    <ul className="mb-3 text-gray-700">
+                      <li>1 Hole Sponsor Sign</li>
+                      <li>1 Foursome Tournament Entry</li>
+                      <li>WC Softball Field Banner</li>
+                    </ul>
+                    <Link
+                      to="/donate"
+                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-purple-500 rounded-lg hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-purple-300"
+                    >
+                      Donate
+                    </Link>
+                  </div>
+                  {/* Grand Slam Sponsor */}
+                  <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+                    <img
+                      src="https://github.com/rogersaz/WCHS-SOFTBALL-GOLF-TOURNAMENT/blob/main/public/golf-trophy-icon.png?raw=true"
+                      alt="Grand Slam Sponsor Icon"
+                      className="w-16 h-16 mx-auto mb-4"
+                    />
+                    <Link to="/donate">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Grand Slam Sponsor</h5>
+                    </Link>
+                    <p className="mb-3 font-semibold text-lg text-gray-700">$1,500</p>
+                    <ul className="mb-3 text-gray-700">
+                      <li>1 Large Hole Sponsor Sign/Tent</li>
+                      <li>2 Foursome Tournament Entries</li>
+                      <li>WC Softball Field Banner</li>
+                    </ul>
                     <Link
                       to="/donate"
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300"
                     >
-                      Read more
-                      <svg
-                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
+                      Donate
                     </Link>
                   </div>
                 </div>
@@ -275,7 +218,104 @@ export default function SponsorshipForm() {
 
                 {/* Sponsorship Form */}
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-                  {/* ... (form fields and buttons remain unchanged) */}
+                  <div>
+                    <input 
+                      type="text"
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Name"
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <input 
+                      type="text"
+                      id="company"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      placeholder="Business Name"
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <input 
+                      type="text"
+                      id="phone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="Phone Number (xxx-xxx-xxxx)"
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      pattern="\d{3}-\d{3}-\d{4}"
+                      title="Phone number must be in the format xxx-xxx-xxxx"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <input 
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email Address"
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold mb-1" htmlFor="logo">Upload Logo (.jpg, .jpeg, .png, .pdf)</label>
+                    <input 
+                      type="file"
+                      id="logo"
+                      accept=".jpg,.jpeg,.png,.pdf"
+                      onChange={(e) => setLogoFile(e.target.files[0])}
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    />
+                    {uploadProgress > 0 && (
+                      <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                        <div
+                          className="bg-blue-600 h-2.5 rounded-full"
+                          style={{ width: `${uploadProgress}%` }}
+                        ></div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold mb-1" htmlFor="sponsorshipLevel">Sponsorship Level</label>
+                    <select 
+                      id="sponsorshipLevel"
+                      value={sponsorshipLevel}
+                      onChange={(e) => setSponsorshipLevel(e.target.value)}
+                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    >
+                      <option value="Single">Single Sponsor - $150</option>
+                      <option value="Double">Double Sponsor - $600</option>
+                      <option value="Triple">Triple Sponsor - $1,000</option>
+                      <option value="Grand Slam">Grand Slam Sponsor - $1,500</option>
+                    </select>
+                  </div>
+
+                  {errorMessage && (
+                    <p className="mt-4 text-red-600 text-center">{errorMessage}</p>
+                  )}
+
+                  <div className="flex justify-center mt-6">
+                    <button 
+                      type="submit" 
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md"
+                    >
+                      Submit Sponsorship
+                    </button>
+                  </div>
                 </form>
 
                 <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 justify-center mt-10">
