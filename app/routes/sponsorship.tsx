@@ -117,7 +117,7 @@ export default function SponsorshipForm() {
                 className="p-6 rounded-lg shadow-lg text-gray-800"
               >
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">
-                  Sponsorship Form
+                  Four Sponsorship Levels
                 </h2>
                 <p className="text-center text-lg mt-4">
                   Local businesses can sponsor our event at various levels. Your generous contribution will support our softball program and make this event a memorable experience for all participants.
@@ -133,7 +133,7 @@ export default function SponsorshipForm() {
                       className="w-16 h-16 mx-auto mb-4"
                     />
                     <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Single Sponsor</h5>
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Single</h5>
                     </Link>
                     <p className="mb-3 font-semibold text-lg text-gray-700">$150</p>
                     <ul className="mb-3 text-gray-700">
@@ -154,7 +154,7 @@ export default function SponsorshipForm() {
                       className="w-16 h-16 mx-auto mb-4"
                     />
                     <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Double Sponsor</h5>
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Double</h5>
                     </Link>
                     <p className="mb-3 font-semibold text-lg text-gray-700">$600</p>
                     <ul className="mb-3 text-gray-700">
@@ -176,7 +176,7 @@ export default function SponsorshipForm() {
                       className="w-16 h-16 mx-auto mb-4"
                     />
                     <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Triple Sponsor</h5>
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Triple</h5>
                     </Link>
                     <p className="mb-3 font-semibold text-lg text-gray-700">$1,000</p>
                     <ul className="mb-3 text-gray-700">
@@ -199,7 +199,7 @@ export default function SponsorshipForm() {
                       className="w-16 h-16 mx-auto mb-4"
                     />
                     <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Grand Slam Sponsor</h5>
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Grand Slam</h5>
                     </Link>
                     <p className="mb-3 font-semibold text-lg text-gray-700">$1,500</p>
                     <ul className="mb-3 text-gray-700">
