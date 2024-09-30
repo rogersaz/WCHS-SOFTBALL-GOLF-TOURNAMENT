@@ -2,8 +2,10 @@ import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Link, MetaFunction } from "@remix-run/react";
 
+// Replace with your actual Supabase credentials
 const supabaseUrl = 'https://rnrbhrdtuakgdenosfgj.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA';
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const meta: MetaFunction = () => {
@@ -18,40 +20,73 @@ export default function RegistrationForm() {
   const [teamName, setTeamName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [teamMember1, setTeamMember1] = useState("");
-  const [teamMember2, setTeamMember2] = useState("");
-  const [teamMember3, setTeamMember3] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const submitData = async () => {
+    // Reset messages
+    setErrorMessage("");
+    setSuccessMessage("");
 
-    if (!phonePattern.test(phone)) {
-      setErrorMessage("Fore! 🏌️‍♂️ Your phone number needs to be in the format xxx-xxx-xxxx. Please fix that slice and try again.");
-      return;
+    // Trim input values
+    const trimmedName = name.trim();
+    const trimmedTeamName = teamName.trim();
+    const trimmedEmail = email.trim();
+    const trimmedPhone = phone.trim();
+
+    // Validation
+    if (!trimmedName || !trimmedTeamName || !trimmedEmail || !trimmedPhone) {
+      setErrorMessage("Please fill out all required fields.");
+      return false;
     }
 
+    if (!trimmedEmail.includes("@")) {
+      setErrorMessage("Please enter a valid email address.");
+      return false;
+    }
+
+    if (!phonePattern.test(trimmedPhone)) {
+      setErrorMessage("Fore! 🏌️‍♂️ Your phone number needs to be in the format xxx-xxx-xxxx. Please fix that slice and try again.");
+      return false;
+    }
+
+    // Submit to Supabase
     const { error } = await supabase
       .from("registrations")
       .insert([
-        { name, team_name: teamName, email, phone, team_member_1: teamMember1, team_member_2: teamMember2, team_member_3: teamMember3 }
+        { name: trimmedName, team_name: trimmedTeamName, email: trimmedEmail, phone: trimmedPhone }
       ]);
 
     if (error) {
       console.error("Error inserting data:", error.message);
+      setErrorMessage("Error submitting data. Please try again.");
+      return false;
     } else {
+      // Clear form
       setName("");
       setTeamName("");
       setEmail("");
       setPhone("");
-      setTeamMember1("");
-      setTeamMember2("");
-      setTeamMember3("");
       setSuccessMessage("Great shot! Your registration is in the hole! 🏌️‍♂️⛳");
-      setErrorMessage("");  // Clear any previous error message
+      return true;
+    }
+  };
+
+  const handlePayNow = async () => {
+    const success = await submitData();
+    if (success) {
+      // Redirect to payment link
+      window.location.href = 'https://square.link/u/v01tMB9e';
+    }
+  };
+
+  const handlePayAtCourse = async () => {
+    const success = await submitData();
+    if (success) {
+      // Success message is already set in submitData
+      // You can display additional messages or actions here if needed
     }
   };
 
@@ -80,14 +115,14 @@ export default function RegistrationForm() {
             </div>
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
-                <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Team and Individual Registration</h2>
-                <p className="text-center text-lg mt-4">Register as a team or individual</p>
+                <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Individual Registration</h2>
+                <p className="text-center text-lg mt-4">Register and pay as an individual or register and pay at the golf course</p>
 
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
                   Cost $120 per player
                 </p>
 
-                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
                   <div>
                     <input 
                       type="text"
@@ -133,68 +168,45 @@ export default function RegistrationForm() {
                       id="phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="Phone Number"
+                      placeholder="Phone Number (xxx-xxx-xxxx)"
                       className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                      maxLength={12} // Adjust maxLength to match the format
+                      maxLength={12}
                       required
-                      pattern="\d{3}-\d{3}-\d{4}" // Regex pattern for validation
+                      pattern="\d{3}-\d{3}-\d{4}"
                       title="Oops! Looks like your phone number's in the sand trap. 🏌️‍♂️⛳ Make sure it's in the format xxx-xxx-xxxx before you tee off on that submit button!"
                     />
                   </div>
 
-                  <div>
-                    <input 
-                      type="text"
-                      id="teamMember1"
-                      value={teamMember1}
-                      onChange={(e) => setTeamMember1(e.target.value)}
-                      placeholder="Team Member 1 (Optional)"
-                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                      maxLength={61}
-                    />
-                  </div>
+                  {/* Removed team member inputs */}
 
-                  <div>
-                    <input 
-                      type="text"
-                      id="teamMember2"
-                      value={teamMember2}
-                      onChange={(e) => setTeamMember2(e.target.value)}
-                      placeholder="Team Member 2 (Optional)"
-                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                      maxLength={61}
-                    />
-                  </div>
-
-                  <div>
-                    <input 
-                      type="text"
-                      id="teamMember3"
-                      value={teamMember3}
-                      onChange={(e) => setTeamMember3(e.target.value)}
-                      placeholder="Team Member 3 (Optional)"
-                      className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                      maxLength={61}
-                    />
-                  </div>
-
-                  <div className="flex justify-center mt-6">
+                  <div className="flex justify-center mt-6 space-x-4">
                     <button 
-                      type="submit" 
+                      type="button" 
+                      onClick={handlePayNow}
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md"
                     >
-                      Submit Registration
+                      Submit &amp; Pay Registration
+                    </button>
+                    <button 
+                      type="button" 
+                      onClick={handlePayAtCourse}
+                      className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md"
+                    >
+                      Submit &amp; Pay at Golf Course
                     </button>
                   </div>
-
-                  {successMessage && (
-                    <p className="mt-4 text-green-500 text-center">{successMessage}</p>
-                  )}
-
-                  {errorMessage && (
-                    <p className="mt-4 text-red-500 text-center">{errorMessage}</p>
-                  )}
                 </form>
+
+                {/* Moved success and error messages outside the form */}
+                {successMessage && (
+                  <p className="mt-4 text-green-500 text-center bg-white p-4 rounded-md">
+                    {successMessage}
+                  </p>
+                )}
+
+                {errorMessage && (
+                  <p className="mt-4 text-red-500 text-center">{errorMessage}</p>
+                )}
 
                 <div className="flex flex-col sm:flex-row justify-center mt-10 space-y-4 sm:space-y-0 sm:space-x-6">
                   <Link
