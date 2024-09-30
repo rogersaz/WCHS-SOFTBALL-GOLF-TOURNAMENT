@@ -51,6 +51,12 @@ export default function Index() {
                 ) : (
                   <div className="flex space-x-4">
                     <Link
+                      to="/"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-blue-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-600 sm:px-8"
+                    >
+                      HOME
+                    </Link>
+                    <Link
                       to="/register"
                       className="flex items-center justify-center rounded-md border border-transparent bg-orange-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-600 sm:px-8"
                     >
@@ -86,3 +92,4 @@ export default function Index() {
     </main>
   );
 }
+
