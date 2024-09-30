@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Link, MetaFunction } from "@remix-run/react";
 
+// Replace with your actual Supabase credentials
 const supabaseUrl = 'https://rnrbhrdtuakgdenosfgj.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA';
 
@@ -23,6 +24,14 @@ export default function SponsorshipForm() {
   const [sponsorshipLevel, setSponsorshipLevel] = useState("Single");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Payment links for each sponsorship level
+  const paymentLinks = {
+    'Single': 'https://square.link/u/TQbHVKAT',
+    'Double': 'https://square.link/u/IzQeu7UR',
+    'Triple': 'https://square.link/u/kQ9x5Paq',
+    'Grand Slam': 'https://square.link/u/aORWOiJH',
+  };
 
   const handleFileUpload = async (file) => {
     setUploadProgress(0);
@@ -75,8 +84,6 @@ export default function SponsorshipForm() {
     if (error) {
       console.error("Error inserting data:", error.message);
     } else {
-      alert("Success! You've just sunk a hole-in-one with that sponsorship submission! ⛳🏌️‍♂️");
-
       // Reset form fields
       setName("");
       setCompany("");
@@ -85,6 +92,14 @@ export default function SponsorshipForm() {
       setLogoFile(null);
       setSponsorshipLevel("Single");
       setUploadProgress(0);
+
+      // Redirect to the appropriate payment link based on sponsorship level
+      const paymentLink = paymentLinks[sponsorshipLevel];
+      if (paymentLink) {
+        window.location.href = paymentLink;
+      } else {
+        alert("Success! You've just sunk a hole-in-one with that sponsorship submission! ⛳🏌️‍♂️");
+      }
     }
   };
 
@@ -123,6 +138,11 @@ export default function SponsorshipForm() {
                   Local businesses can sponsor our event at various levels. Your generous contribution will support our softball program and make this event a memorable experience for all participants.
                 </p>
 
+                {/* Tax Deductible Information */}
+                <p className="text-center text-lg mt-2 font-semibold text-green-800">
+                  All sponsorships are tax-deductible, allowing you to support a great cause while benefiting from a tax deduction.
+                </p>
+
                 {/* Sponsorship Cards with Icons */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
                   {/* Single Sponsor */}
@@ -132,19 +152,11 @@ export default function SponsorshipForm() {
                       alt="Single Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
-                    <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Single</h5>
-                    </Link>
-                    <p className="mb-3 font-semibold text-lg text-gray-700">$150</p>
-                    <ul className="mb-3 text-gray-700">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Single</h5>
+                    <p className="mb-3 font-semibold text-lg text-gray-700 text-center">$150</p>
+                    <ul className="mb-3 text-gray-700 list-disc list-inside">
                       <li>1 Hole Sponsor Sign</li>
                     </ul>
-                    <Link
-                      to="/donate"
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300"
-                    >
-                      Donate
-                    </Link>
                   </div>
                   {/* Double Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow">
@@ -153,20 +165,12 @@ export default function SponsorshipForm() {
                       alt="Double Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
-                    <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Double</h5>
-                    </Link>
-                    <p className="mb-3 font-semibold text-lg text-gray-700">$600</p>
-                    <ul className="mb-3 text-gray-700">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Double</h5>
+                    <p className="mb-3 font-semibold text-lg text-gray-700 text-center">$600</p>
+                    <ul className="mb-3 text-gray-700 list-disc list-inside">
                       <li>1 Hole Sponsor Sign</li>
                       <li>1 Foursome Tournament Entry</li>
                     </ul>
-                    <Link
-                      to="/donate"
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
-                    >
-                      Donate
-                    </Link>
                   </div>
                   {/* Triple Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow">
@@ -175,21 +179,13 @@ export default function SponsorshipForm() {
                       alt="Triple Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
-                    <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Triple</h5>
-                    </Link>
-                    <p className="mb-3 font-semibold text-lg text-gray-700">$1,000</p>
-                    <ul className="mb-3 text-gray-700">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Triple</h5>
+                    <p className="mb-3 font-semibold text-lg text-gray-700 text-center">$1,000</p>
+                    <ul className="mb-3 text-gray-700 list-disc list-inside">
                       <li>1 Hole Sponsor Sign</li>
                       <li>1 Foursome Tournament Entry</li>
                       <li>WC Softball Field Banner</li>
                     </ul>
-                    <Link
-                      to="/donate"
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-purple-500 rounded-lg hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-purple-300"
-                    >
-                      Donate
-                    </Link>
                   </div>
                   {/* Grand Slam Sponsor */}
                   <div className="max-w-sm mx-auto p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow">
@@ -198,21 +194,13 @@ export default function SponsorshipForm() {
                       alt="Grand Slam Sponsor Icon"
                       className="w-16 h-16 mx-auto mb-4"
                     />
-                    <Link to="/donate">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Grand Slam</h5>
-                    </Link>
-                    <p className="mb-3 font-semibold text-lg text-gray-700">$1,500</p>
-                    <ul className="mb-3 text-gray-700">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Grand Slam</h5>
+                    <p className="mb-3 font-semibold text-lg text-gray-700 text-center">$1,500</p>
+                    <ul className="mb-3 text-gray-700 list-disc list-inside">
                       <li>1 Large Hole Sponsor Sign/Tent</li>
                       <li>2 Foursome Tournament Entries</li>
                       <li>WC Softball Field Banner</li>
                     </ul>
-                    <Link
-                      to="/donate"
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300"
-                    >
-                      Donate
-                    </Link>
                   </div>
                 </div>
                 {/* Sponsorship Cards End Here */}
