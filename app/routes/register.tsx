@@ -25,7 +25,7 @@ export default function RegistrationForm() {
 
   const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
 
-  const submitData = async () => {
+  const submitData = async (payType) => {
     // Reset messages
     setErrorMessage("");
     setSuccessMessage("");
@@ -52,11 +52,17 @@ export default function RegistrationForm() {
       return false;
     }
 
-    // Submit to Supabase
+    // Set payment status based on button click (payType will be 'pay-with-check' or 'pay-with-cc')
     const { error } = await supabase
       .from("registrations")
       .insert([
-        { name: trimmedName, team_name: trimmedTeamName, email: trimmedEmail, phone: trimmedPhone }
+        { 
+          name: trimmedName, 
+          team_name: trimmedTeamName, 
+          email: trimmedEmail, 
+          phone: trimmedPhone, 
+          [payType]: "yes" // Use dynamic key based on payType
+        }
       ]);
 
     if (error) {
@@ -69,25 +75,30 @@ export default function RegistrationForm() {
       setTeamName("");
       setEmail("");
       setPhone("");
-      setSuccessMessage("Great shot! Your registration is in the hole! 🏌️‍♂️⛳");
+
+      // Success messages for different buttons
+      if (payType === "pay-with-check") {
+        setSuccessMessage(
+          `Great shot! Your registration is in the hole! 🏌️‍♂️⛳ <br />
+           Write checks to Willow Canyon HS Softball Booster. <br />
+           <span style="color:red;">All fees need to be received by October 31st. Thank you for playing!!!</span>`
+        );
+        alert("Great shot! Your registration is in the hole! 🏌️‍♂️⛳ Write checks to Willow Canyon HS Softball Booster. All fees need to be received by October 31st. Thank you for playing!!!");
+      } else if (payType === "pay-with-cc") {
+        // Redirect to payment link for credit card
+        window.location.href = 'https://square.link/u/v01tMB9e';
+      }
+
       return true;
     }
   };
 
   const handlePayNow = async () => {
-    const success = await submitData();
-    if (success) {
-      // Redirect to payment link
-      window.location.href = 'https://square.link/u/v01tMB9e';
-    }
+    await submitData("pay-with-cc");
   };
 
-  const handlePayAtCourse = async () => {
-    const success = await submitData();
-    if (success) {
-      // Success message is already set in submitData
-      // You can display additional messages or actions here if needed
-    }
+  const handlePayWithCheck = async () => {
+    await submitData("pay-with-check");
   };
 
   return (
@@ -116,7 +127,7 @@ export default function RegistrationForm() {
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Individual Registration</h2>
-                <p className="text-center text-lg mt-4">Register and pay as an individual or register and pay at the golf course</p>
+                <p className="text-center text-lg mt-4">Register and pay as an individual or <br></br>register and pay at the golf course Cash or Check</p>
 
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
                   Cost $120 per player
@@ -177,33 +188,32 @@ export default function RegistrationForm() {
                     />
                   </div>
 
-                  {/* Removed team member inputs */}
-
                   <div className="flex justify-center mt-6 space-x-4">
                     <button 
                       type="button" 
                       onClick={handlePayNow}
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md"
                     >
-                      Submit &amp; Pay Registration
+                      Submit &amp; Pay With CC
                     </button>
                     <button 
                       type="button" 
-                      onClick={handlePayAtCourse}
+                      onClick={handlePayWithCheck}
                       className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md"
                     >
-                      Submit &amp; Pay at Golf Course
+                      Submit and Pay Booster with Check
                     </button>
                   </div>
                 </form>
 
-                {/* Moved success and error messages outside the form */}
+                {/* Display success message */}
                 {successMessage && (
-                  <p className="mt-4 text-green-500 text-center bg-white p-4 rounded-md">
-                    {successMessage}
+                  <p className="mt-4 text-center bg-white p-4 rounded-md"
+                     dangerouslySetInnerHTML={{ __html: successMessage }}>
                   </p>
                 )}
 
+                {/* Display error message */}
                 {errorMessage && (
                   <p className="mt-4 text-red-500 text-center">{errorMessage}</p>
                 )}
