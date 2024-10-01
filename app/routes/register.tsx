@@ -127,7 +127,7 @@ export default function RegistrationForm() {
             <div className="lg:pb-18 relative px-12 pt-12 pb-8 sm:px-12 sm:pt-24 sm:pb-14 lg:px-16 lg:pt-32">
               <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }} className="p-6 rounded-lg shadow-lg text-gray-800">
                 <h2 className="text-center text-4xl text-black mt-8 font-montserrat">Individual Registration</h2>
-                <p className="text-center text-lg mt-4">Register and pay as an individual or <br></br>register and pay at the golf course Cash or Check</p>
+                <p className="text-center text-lg mt-4">Register and pay as an individual</p>
 
                 <p className="text-center text-red-600 font-bold text-xl mt-4">
                   Cost $120 per player
