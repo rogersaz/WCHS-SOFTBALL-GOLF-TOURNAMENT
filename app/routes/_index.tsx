@@ -68,14 +68,15 @@ export default function Index() {
                     >
                       Sponsorship
                     </Link>
-                    {/* Donation/Payment Button */}
-                    <Link
+                    
+                    {/* <Link
                       to="/donate"
                       className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700 sm:px-8"
                     >
                       Donate/Pay
-                    </Link>
+                    </Link> */}
                     {/* Pencil Me In Button */}
+
                     <Link
                       to="/pencil-me-in"
                       className="flex items-center justify-center rounded-md border border-transparent bg-purple-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700 sm:px-8"

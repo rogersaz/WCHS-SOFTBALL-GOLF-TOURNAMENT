@@ -77,6 +77,14 @@ export default function Index() {
                 >
                   Register
                 </Link>
+                
+                <Link
+                      to="/pencil-me-in"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-purple-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700 sm:px-8"
+                    >
+                      Pencil Me In
+                    </Link>
+
                 <Link
                   to="/"
                   className="flex items-center justify-center rounded-md bg-gray-500 px-4 py-3 font-medium text-white hover:bg-gray-600 sm:px-8"

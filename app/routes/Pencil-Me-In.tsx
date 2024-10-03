@@ -138,12 +138,12 @@ export default function PencilMeIn() {
                   >
                     Sponsorship
                   </Link>
-                  <Link
+                  {/* <Link
                     to="/donate"
                     className="flex items-center justify-center rounded-md bg-red-600 px-4 py-3 font-medium text-white hover:bg-red-700 sm:px-8"
                   >
                     Donate/Pay
-                  </Link>
+                  </Link> */}
                 </div>
 
               </div>
