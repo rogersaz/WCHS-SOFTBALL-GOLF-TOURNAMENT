@@ -53,9 +53,9 @@ export default function BackendDashboard() {
   // 5. Fetch Data
   useEffect(() => {
     const fetchData = async () => {
-      const currentUser = supabase.auth.getUser();
-      if (currentUser) {
-        setUser(currentUser);
+      const currentUser = await supabase.auth.getSession();
+      if (currentUser?.data?.session?.user) {
+        setUser(currentUser.data.session.user);
         // Fetch data from the 'registrations' table if the user is logged in
         const { data: registrations, error } = await supabase
           .from('registrations')
@@ -63,6 +63,8 @@ export default function BackendDashboard() {
         if (!error) {
           // Set the fetched data to the state
           setData(registrations);
+        } else {
+          console.error('Error fetching registrations:', error);
         }
       }
     };
