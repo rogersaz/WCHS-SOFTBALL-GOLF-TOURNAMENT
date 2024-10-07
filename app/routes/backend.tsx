@@ -33,7 +33,7 @@ export default function BackendDashboard() {
         setError('Invalid email or password');
       } else {
         // Set the user if login is successful
-        setUser(loginData?.user);
+        setUser(loginData.user);
       }
     } catch (error) {
       // Handle unexpected errors
@@ -44,29 +44,30 @@ export default function BackendDashboard() {
   // 4. Logout Functionality
   const handleLogout = async () => {
     // Sign out the user using Supabase's signOut method
-    await supabase.auth.signOut();
-    setUser(null); // Clear the user state after logging out
+    const { error } = await supabase.auth.signOut();
+    if (!error) {
+      setUser(null); // Clear the user state after logging out
+    }
   };
 
   // 5. Fetch Data
   useEffect(() => {
     const fetchData = async () => {
-      if (user) {
+      const currentUser = supabase.auth.getUser();
+      if (currentUser) {
+        setUser(currentUser);
         // Fetch data from the 'registrations' table if the user is logged in
         const { data: registrations, error } = await supabase
           .from('registrations')
           .select('*');
-        if (error) {
-          // Log any errors that occur while fetching data
-          console.error('Error fetching data:', error);
-        } else {
+        if (!error) {
           // Set the fetched data to the state
           setData(registrations);
         }
       }
     };
     fetchData();
-  }, [user]); // Only refetch data when the user state changes
+  }, []); // Only run once on component mount
 
   // 6. Tailwind CSS styling
   return (
@@ -115,14 +116,18 @@ export default function BackendDashboard() {
           </div>
           {/* Display the data fetched from the 'registrations' table */}
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {data.map((item) => (
-              <div key={item.id} className="bg-blue-50 rounded-lg p-6 shadow-md">
-                <h3 className="font-bold text-xl mb-2">{item.customer_name}</h3>
-                <p><strong>Email:</strong> {item.email}</p>
-                <p><strong>Genre:</strong> {item.song_genre}</p>
-                <p><strong>Keywords:</strong> {item.keywords}</p>
-              </div>
-            ))}
+            {data.length > 0 ? (
+              data.map((item) => (
+                <div key={item.id} className="bg-blue-50 rounded-lg p-6 shadow-md">
+                  <h3 className="font-bold text-xl mb-2">{item.customer_name}</h3>
+                  <p><strong>Email:</strong> {item.email}</p>
+                  <p><strong>Genre:</strong> {item.song_genre}</p>
+                  <p><strong>Keywords:</strong> {item.keywords}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-center col-span-full">No registrations found.</p>
+            )}
           </div>
         </div>
       )}
