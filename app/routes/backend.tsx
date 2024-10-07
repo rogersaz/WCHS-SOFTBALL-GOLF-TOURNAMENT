@@ -11,17 +11,20 @@ import { Link } from '@remix-run/react';
 const supabase = createClient('https://rnrbhrdtuakgdenosfgj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA');
 
 export default function BackendDashboard() {
-  // State to store user info, fetched data, form inputs, and error messages
+  // State to store user info, fetched data, form inputs, error messages, and loading state
   const [user, setUser] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   // 3. Login Functionality
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
+    setLoading(true);
     try {
       // Use Supabase's signInWithPassword method to authenticate the user
       const { data: loginData, error } = await supabase.auth.signInWithPassword({
@@ -30,7 +33,7 @@ export default function BackendDashboard() {
       });
       if (error) {
         // Set an error message if login fails
-        setError('Invalid email or password');
+        setError('Invalid email or password');  
       } else {
         // Set the user if login is successful
         setUser(loginData.user);
@@ -38,38 +41,47 @@ export default function BackendDashboard() {
     } catch (error) {
       // Handle unexpected errors
       setError('An unexpected error occurred');
+    } finally {
+      setLoading(false);
     }
   };
 
   // 4. Logout Functionality
   const handleLogout = async () => {
+    setLogoutLoading(true);
     // Sign out the user using Supabase's signOut method
     const { error } = await supabase.auth.signOut();
     if (!error) {
       setUser(null); // Clear the user state after logging out
     }
+    setLogoutLoading(false);
   };
 
   // 5. Fetch Data
   useEffect(() => {
     const fetchData = async () => {
-      const currentUser = await supabase.auth.getSession();
-      if (currentUser?.data?.session?.user) {
-        setUser(currentUser.data.session.user);
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+      if (error) {
+        console.error('Error fetching session:', error);
+      } else if (session) {
+        setUser(session.user);
         // Fetch data from the 'registrations' table if the user is logged in
-        const { data: registrations, error } = await supabase
+        const { data: registrations, error: fetchError } = await supabase
           .from('registrations')
           .select('*');
-        if (!error) {
+        if (!fetchError) {
           // Set the fetched data to the state
           setData(registrations);
         } else {
-          console.error('Error fetching registrations:', error);
+          console.error('Error fetching registrations:', fetchError);
         }
       }
     };
     fetchData();
-  }, []); // Only run once on component mount
+  }, [user]); // Run when user state changes
 
   // 6. Tailwind CSS styling
   return (
@@ -99,8 +111,9 @@ export default function BackendDashboard() {
             <button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg"
+              disabled={loading}
             >
-              Log In
+              {loading ? 'Logging in...' : 'Log In'}
             </button>
           </form>
         </div>
@@ -112,23 +125,28 @@ export default function BackendDashboard() {
             <button
               onClick={handleLogout}
               className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg"
+              disabled={logoutLoading}
             >
-              Logout
+              {logoutLoading ? 'Logging out...' : 'Logout'}
             </button>
           </div>
           {/* Display the data fetched from the 'registrations' table */}
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {data.length > 0 ? (
-              data.map((item) => (
-                <div key={item.id} className="bg-blue-50 rounded-lg p-6 shadow-md">
-                  <h3 className="font-bold text-xl mb-2">{item.customer_name}</h3>
-                  <p><strong>Email:</strong> {item.email}</p>
-                  <p><strong>Genre:</strong> {item.song_genre}</p>
-                  <p><strong>Keywords:</strong> {item.keywords}</p>
-                </div>
-              ))
+            {data ? (
+              data.length > 0 ? (
+                data.map((item) => (
+                  <div key={item.id} className="bg-blue-50 rounded-lg p-6 shadow-md">
+                    <h3 className="font-bold text-xl mb-2">{item.customer_name}</h3>
+                    <p><strong>Email:</strong> {item.email}</p>
+                    <p><strong>Genre:</strong> {item.song_genre}</p>
+                    <p><strong>Keywords:</strong> {item.keywords}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-center col-span-full">No registrations found.</p>
+              )
             ) : (
-              <p className="text-center col-span-full">No registrations found.</p>
+              <p className="text-center col-span-full">Loading...</p>
             )}
           </div>
         </div>
