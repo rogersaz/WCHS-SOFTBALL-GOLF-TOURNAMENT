@@ -24,7 +24,7 @@ export default function BackendDashboard() {
     setError(null);
     try {
       // Use Supabase's signInWithPassword method to authenticate the user
-      const { data: userData, error } = await supabase.auth.signInWithPassword({
+      const { data: loginData, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -33,7 +33,7 @@ export default function BackendDashboard() {
         setError('Invalid email or password');
       } else {
         // Set the user if login is successful
-        setUser(userData.user);
+        setUser(loginData?.user);
       }
     } catch (error) {
       // Handle unexpected errors
