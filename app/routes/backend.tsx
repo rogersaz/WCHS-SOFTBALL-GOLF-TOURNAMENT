@@ -49,7 +49,7 @@ function App() {
       const [registrationsResponse, penciledInResponse] = await Promise.all([
         supabase
           .from('registrations')
-          .select('name, team_name, email, phone, pay-with-check, pay-with-cc'),
+          .select('name, team_name, email, phone, pay_with_check, pay_with_cc'),
         supabase
           .from('pencil')
           .select('name, email')
