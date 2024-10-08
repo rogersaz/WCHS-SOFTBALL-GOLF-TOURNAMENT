@@ -10,8 +10,8 @@ interface Registration {
   team_name: string
   email: string
   phone: string
-  'pay-with-check': boolean
-  'pay-with-cc': boolean
+  'pay-with-check': string
+  'pay-with-cc': string
 }
 
 interface PenciledIn {
@@ -183,7 +183,7 @@ function App() {
       ) : (
         <>
           <div className="flex justify-between items-center w-full max-w-4xl mb-6">
-            <h1 className="text-4xl font-bold text-white">Dashboards</h1>
+            <h1 className="text-4xl font-bold text-white">Admin Dashboards</h1>
             <button
               onClick={handleLogout}
               className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg flex items-center"
