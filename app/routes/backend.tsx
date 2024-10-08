@@ -10,8 +10,8 @@ interface Registration {
   team_name: string
   email: string
   phone: string
-  pay_with_check: Text
-  pay_with_cc: Text
+  'pay-with-check': boolean
+  'pay-with-cc': boolean
 }
 
 interface PenciledIn {
@@ -19,10 +19,19 @@ interface PenciledIn {
   email: string
 }
 
+interface Sponsorship {
+  name: string
+  company: string
+  phone: string
+  email: string
+  sponsorship_level: string
+}
+
 function App() {
   const [user, setUser] = useState<any>(null)
   const [registrations, setRegistrations] = useState<Registration[] | null>(null)
   const [penciledIn, setPenciledIn] = useState<PenciledIn[] | null>(null)
+  const [sponsorships, setSponsorships] = useState<Sponsorship[] | null>(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -46,22 +55,28 @@ function App() {
     setError(null)
     try {
       console.log('Fetching data...')
-      const [registrationsResponse, penciledInResponse] = await Promise.all([
+      const [registrationsResponse, penciledInResponse, sponsorshipsResponse] = await Promise.all([
         supabase
           .from('registrations')
-          .select('name, team_name, email, phone, pay_with_check, pay_with_cc'),
+          .select('name, team_name, email, phone, pay-with-check, pay-with-cc'),
         supabase
           .from('pencil')
-          .select('name, email')
+          .select('name, email'),
+        supabase
+          .from('sponsorships')
+          .select('name, company, phone, email, sponsorship_level')
       ])
       
       if (registrationsResponse.error) throw registrationsResponse.error
       if (penciledInResponse.error) throw penciledInResponse.error
+      if (sponsorshipsResponse.error) throw sponsorshipsResponse.error
       
       console.log('Fetched registrations:', registrationsResponse.data)
       console.log('Fetched penciled in:', penciledInResponse.data)
+      console.log('Fetched sponsorships:', sponsorshipsResponse.data)
       setRegistrations(registrationsResponse.data)
       setPenciledIn(penciledInResponse.data)
+      setSponsorships(sponsorshipsResponse.data)
     } catch (error: any) {
       console.error('Error fetching data:', error)
       setError(`Error fetching data: ${error.message}`)
@@ -101,6 +116,7 @@ function App() {
       setUser(null)
       setRegistrations(null)
       setPenciledIn(null)
+      setSponsorships(null)
     } catch (error: any) {
       setError(`Logout failed: ${error.message}`)
     } finally {
@@ -127,13 +143,16 @@ function App() {
               <tbody className="text-gray-600 text-sm font-light">
                 {data.map((item, index) => (
                   <tr key={index} className="border-b border-gray-200 hover:bg-gray-100">
-                    {headers.map((header, headerIndex) => (
-                      <td key={headerIndex} className="py-3 px-6 text-left whitespace-nowrap">
-                        {typeof item[header.toLowerCase()] === 'boolean'
-                          ? item[header.toLowerCase()] ? 'Yes' : 'No'
-                          : item[header.toLowerCase()]}
-                      </td>
-                    ))}
+                    {headers.map((header, headerIndex) => {
+                      const key = header.toLowerCase().replace(/ /g, '-')
+                      return (
+                        <td key={headerIndex} className="py-3 px-6 text-left whitespace-nowrap">
+                          {typeof item[key] === 'boolean'
+                            ? item[key] ? 'Yes' : 'No'
+                            : item[key]}
+                        </td>
+                      )
+                    })}
                   </tr>
                 ))}
               </tbody>
@@ -183,7 +202,7 @@ function App() {
       ) : (
         <>
           <div className="flex justify-between items-center w-full max-w-4xl mb-6">
-            <h1 className="text-4xl font-bold text-white">Admin Dashboards</h1>
+            <h1 className="text-4xl font-bold text-white">Dashboards</h1>
             <button
               onClick={handleLogout}
               className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg flex items-center"
@@ -200,6 +219,7 @@ function App() {
           {error && <p className="text-red-600 mb-4">{error}</p>}
           {renderDashboard("Registrations", registrations, ["Name", "Team Name", "Email", "Phone", "Pay with Check", "Pay with CC"])}
           {renderDashboard("Penciled In", penciledIn, ["Name", "Email"])}
+          {renderDashboard("Sponsorships", sponsorships, ["Name", "Company", "Phone", "Email", "Sponsorship Level"])}
           <button
             onClick={fetchData}
             className="mt-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg"
