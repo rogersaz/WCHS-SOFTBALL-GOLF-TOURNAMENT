@@ -1,84 +1,155 @@
-// Install necessary dependencies: `npm install @supabase/supabase-js tailwindcss`
+import React, { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+import { LogOut } from 'lucide-react'
 
-// Setting up the login page and backend data display using Remix and Supabase
+// Set up Supabase client
+const supabase = createClient('https://rnrbhrdtuakgdenosfgj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA')
 
-// 1. Import required libraries
-import { createClient } from '@supabase/supabase-js';
-import { useState, useEffect } from 'react';
-import { Link } from '@remix-run/react';
+interface Registration {
+  name: string
+  team_name: string
+  email: string
+  phone: string
+  'pay-with-check': boolean
+  'pay-with-cc': boolean
+}
 
-// 2. Set up Supabase client
-const supabase = createClient('https://rnrbhrdtuakgdenosfgj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucmJocmR0dWFrZ2Rlbm9zZmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4MzYyOTYsImV4cCI6MjA0MTQxMjI5Nn0.5rXZ1w0neKmCogymbhDJecpwji0dvtG3pEEEs2k5iPA');
+interface PenciledIn {
+  name: string
+  email: string
+}
 
-export default function BackendDashboard() {
-  // State to store user info, fetched data, form inputs, error messages, and loading state
-  const [user, setUser] = useState(null);
-  const [data, setData] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [logoutLoading, setLogoutLoading] = useState(false);
+function App() {
+  const [user, setUser] = useState<any>(null)
+  const [registrations, setRegistrations] = useState<Registration[] | null>(null)
+  const [penciledIn, setPenciledIn] = useState<PenciledIn[] | null>(null)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [dataLoading, setDataLoading] = useState(false)
+  const [logoutLoading, setLogoutLoading] = useState(false)
 
-  // 3. Login Functionality
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
+  useEffect(() => {
+    const fetchSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        setUser(session.user)
+        fetchData()
+      }
+    }
+    fetchSession()
+  }, [])
+
+  const fetchData = async () => {
+    setDataLoading(true)
+    setError(null)
+    try {
+      console.log('Fetching data...')
+      const [registrationsResponse, penciledInResponse] = await Promise.all([
+        supabase
+          .from('registrations')
+          .select('name, team_name, email, phone, pay-with-check, pay-with-cc'),
+        supabase
+          .from('pencil')
+          .select('name, email')
+      ])
+      
+      if (registrationsResponse.error) throw registrationsResponse.error
+      if (penciledInResponse.error) throw penciledInResponse.error
+      
+      console.log('Fetched registrations:', registrationsResponse.data)
+      console.log('Fetched penciled in:', penciledInResponse.data)
+      setRegistrations(registrationsResponse.data)
+      setPenciledIn(penciledInResponse.data)
+    } catch (error: any) {
+      console.error('Error fetching data:', error)
+      setError(`Error fetching data: ${error.message}`)
+    } finally {
+      setDataLoading(false)
+    }
+  }
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError(null)
+    setLoading(true)
     try {
       const { data: loginData, error } = await supabase.auth.signInWithPassword({
         email,
         password,
-      });
+      })
       if (error) {
-        setError('Invalid email or password');
-      } else {
-        setUser(loginData.user);
+        throw error
       }
-    } catch (error) {
-      setError('An unexpected error occurred');
+      setUser(loginData.user)
+      await fetchData()
+    } catch (error: any) {
+      setError(`Login failed: ${error.message}`)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-  // 4. Logout Functionality
   const handleLogout = async () => {
-    setLogoutLoading(true);
-    const { error } = await supabase.auth.signOut();
-    if (!error) {
-      setUser(null);
-    }
-    setLogoutLoading(false);
-  };
-
-  // 5. Fetch Data
-  useEffect(() => {
-    const fetchData = async () => {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
+    setLogoutLoading(true)
+    try {
+      const { error } = await supabase.auth.signOut()
       if (error) {
-        console.error('Error fetching session:', error);
-      } else if (session) {
-        setUser(session.user);
-        const { data: registrations, error: fetchError } = await supabase
-          .from('registrations')
-          .select('name, team-name, email, phone, pay-with-check, pay-with-cc');
-        if (!fetchError) {
-          setData(registrations);
-        } else {
-          console.error('Error fetching registrations:', fetchError);
-        }
+        throw error
       }
-    };
-    fetchData();
-  }, [user]);
+      setUser(null)
+      setRegistrations(null)
+      setPenciledIn(null)
+    } catch (error: any) {
+      setError(`Logout failed: ${error.message}`)
+    } finally {
+      setLogoutLoading(false)
+    }
+  }
 
-  // 6. Tailwind CSS styling
+  const renderDashboard = (title: string, data: any[] | null, headers: string[]) => (
+    <div className="bg-white rounded-lg p-8 shadow-md w-full max-w-4xl mb-8">
+      <h2 className="text-3xl font-bold mb-6">{title}</h2>
+      {dataLoading ? (
+        <p className="text-center">Loading data...</p>
+      ) : data ? (
+        data.length > 0 ? (
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white">
+              <thead>
+                <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                  {headers.map((header, index) => (
+                    <th key={index} className="py-3 px-6 text-left">{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="text-gray-600 text-sm font-light">
+                {data.map((item, index) => (
+                  <tr key={index} className="border-b border-gray-200 hover:bg-gray-100">
+                    {headers.map((header, headerIndex) => (
+                      <td key={headerIndex} className="py-3 px-6 text-left whitespace-nowrap">
+                        {typeof item[header.toLowerCase()] === 'boolean'
+                          ? item[header.toLowerCase()] ? 'Yes' : 'No'
+                          : item[header.toLowerCase()]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p className="text-center">No data found.</p>
+        )
+      ) : (
+        <p className="text-center">Error loading data. Please try again.</p>
+      )}
+    </div>
+  )
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-500 p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-500 p-4">
       {!user ? (
         <div className="bg-white rounded-lg p-8 shadow-md max-w-sm w-full">
           <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
@@ -110,39 +181,36 @@ export default function BackendDashboard() {
           </form>
         </div>
       ) : (
-        <div className="bg-white rounded-lg p-8 shadow-md w-full max-w-4xl">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold">Registrations Dashboard</h2>
+        <>
+          <div className="flex justify-between items-center w-full max-w-4xl mb-6">
+            <h1 className="text-4xl font-bold text-white">Dashboards</h1>
             <button
               onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg"
+              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg flex items-center"
               disabled={logoutLoading}
             >
-              {logoutLoading ? 'Logging out...' : 'Logout'}
+              {logoutLoading ? 'Logging out...' : (
+                <>
+                  <LogOut className="mr-2" size={18} />
+                  Logout
+                </>
+              )}
             </button>
           </div>
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {data ? (
-              data.length > 0 ? (
-                data.map((item) => (
-                  <div key={item.email} className="bg-blue-50 rounded-lg p-6 shadow-md">
-                    <h3 className="font-bold text-xl mb-2">{item.name}</h3>
-                    <p><strong>Team Name:</strong> {item['team-name']}</p>
-                    <p><strong>Email:</strong> {item.email}</p>
-                    <p><strong>Phone:</strong> {item.phone}</p>
-                    <p><strong>Pay with Check:</strong> {item['pay-with-check'] ? 'Yes' : 'No'}</p>
-                    <p><strong>Pay with Credit Card:</strong> {item['pay-with-cc'] ? 'Yes' : 'No'}</p>
-                  </div>
-                ))
-              ) : (
-                <p className="text-center col-span-full">No registrations found.</p>
-              )
-            ) : (
-              <p className="text-center col-span-full">Loading...</p>
-            )}
-          </div>
-        </div>
+          {error && <p className="text-red-600 mb-4">{error}</p>}
+          {renderDashboard("Registrations", registrations, ["Name", "Team Name", "Email", "Phone", "Pay with Check", "Pay with CC"])}
+          {renderDashboard("Penciled In", penciledIn, ["Name", "Email"])}
+          <button
+            onClick={fetchData}
+            className="mt-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg"
+            disabled={dataLoading}
+          >
+            {dataLoading ? 'Refreshing...' : 'Refresh Data'}
+          </button>
+        </>
       )}
     </div>
-  );
+  )
 }
+
+export default App
