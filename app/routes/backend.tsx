@@ -10,8 +10,8 @@ interface Registration {
   team_name: string
   email: string
   phone: string
-  'pay-with-check': string
-  'pay-with-cc': string
+  'pay-with-check': boolean
+  'pay-with-cc': boolean
 }
 
 interface PenciledIn {
