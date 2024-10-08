@@ -10,8 +10,8 @@ interface Registration {
   team_name: string
   email: string
   phone: string
-  'pay_with_check': boolean
-  'pay_with_cc': boolean
+  'pay-with-check': boolean
+  'pay-with-cc': boolean
 }
 
 interface PenciledIn {
@@ -144,12 +144,12 @@ function App() {
                 {data.map((item, index) => (
                   <tr key={index} className="border-b border-gray-200 hover:bg-gray-100">
                     {headers.map((header, headerIndex) => {
-                      const key = header.toLowerCase().replace(/ /g, '-')
+                      const key = header.toLowerCase().replace(/ /g, '_')
                       return (
                         <td key={headerIndex} className="py-3 px-6 text-left whitespace-nowrap">
                           {typeof item[key] === 'boolean'
                             ? item[key] ? 'Yes' : 'No'
-                            : item[key]}
+                            : item[key] || 'N/A'}
                         </td>
                       )
                     })}
