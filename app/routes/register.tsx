@@ -77,14 +77,14 @@ export default function RegistrationForm() {
       setPhone("");
 
       // Success messages for different buttons
-      if (payType === "pay-with-check") {
+      if (payType === "pay_with_check") {
         setSuccessMessage(
           `Great shot! Your registration is in the hole! 🏌️‍♂️⛳ <br />
            Write checks to Willow Canyon HS Softball Booster. <br />
            <span style="color:red;">All fees need to be received by October 31st. Thank you for playing!!!</span>`
         );
         alert("Great shot! Your registration is in the hole! 🏌️‍♂️⛳ Write checks to Willow Canyon HS Softball Booster. All fees need to be received by October 31st. Thank you for playing!!!");
-      } else if (payType === "pay-with-cc") {
+      } else if (payType === "pay_with_cc") {
         // Redirect to payment link for credit card
         window.location.href = 'https://square.link/u/v01tMB9e';
       }
@@ -94,11 +94,11 @@ export default function RegistrationForm() {
   };
 
   const handlePayNow = async () => {
-    await submitData("pay-with-cc");
+    await submitData("pay_with_cc");
   };
 
   const handlePayWithCheck = async () => {
-    await submitData("pay-with-check");
+    await submitData("pay_with_check");
   };
 
   return (
