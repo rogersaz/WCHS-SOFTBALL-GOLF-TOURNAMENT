@@ -13,8 +13,8 @@ interface Registration {
   team_name: string
   email: string
   phone: string
-  pay_with_check: string
-  pay_with_cc: string
+  pay-with-check: string
+  pay-with-cc: string
 }
 
 interface PenciledIn {
